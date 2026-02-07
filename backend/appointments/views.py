@@ -4,7 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import OTPVerification
-
+from django.db import transaction
+from django.db.models import Q
+from clinic.models import TimeSlot
 
 class RequestOTPView(APIView):
     """
@@ -45,12 +47,19 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+
+from django.db import transaction
+from clinic.models import TimeSlot
+from .models import Appointment, OTPVerification
+from django.contrib.auth import get_user_model
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+User = get_user_model()
+
+
 class BookAppointmentView(APIView):
-    """
-    Step 2 of booking:
-    - Verify OTP
-    - Book slot
-    """
 
     def post(self, request):
         phone = request.data.get("phone_number")
@@ -73,24 +82,33 @@ class BookAppointmentView(APIView):
         otp_obj.is_verified = True
         otp_obj.save()
 
-        # 2. Get or create patient user
+        # 2. Get or create patient
         user, _ = User.objects.get_or_create(
             phone_number=phone,
             defaults={"username": phone}
         )
 
-        # 3. Book slot
+        # 3. Atomic booking of TimeSlot
         try:
-            slot = AvailabilitySlot.objects.get(id=slot_id, is_active=True)
-        except AvailabilitySlot.DoesNotExist:
+            with transaction.atomic():
+                slot = (
+                    TimeSlot.objects
+                    .select_for_update()
+                    .get(id=slot_id, is_booked=False)
+                )
+
+                Appointment.objects.create(
+                    patient=user,
+                    slot=slot,
+                    name=name,
+                    age=age,
+                    sex=sex
+                )
+
+                slot.is_booked = True
+                slot.save()
+
+        except TimeSlot.DoesNotExist:
             return Response({"error": "Slot unavailable"}, status=400)
 
-        Appointment.objects.create(
-            patient=user,
-            slot=slot,
-            name=name,
-            age=age,
-            sex=sex
-        )
-
-        return Response({"message": "Appointment booked"})
+        return Response({"message": "Appointment booked"}, status=201)
