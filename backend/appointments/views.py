@@ -1,27 +1,34 @@
-from django.shortcuts import render
 import random
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.db import transaction
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import OTPVerification
-from django.db import transaction
-from django.db.models import Q
 from clinic.models import TimeSlot
 
+from .models import Appointment, OTPVerification
+
+
+User = get_user_model()
+
+
+def normalize_phone_number(phone_number):
+    return "".join(char for char in str(phone_number) if char.isdigit())
+
+
+def get_doctor_name(doctor):
+    full_name = doctor.user.get_full_name().strip()
+    return full_name or doctor.user.username
+
+
 class RequestOTPView(APIView):
-    """
-    Step 1 of booking:
-    - Takes phone number
-    - Generates OTP
-    - Stores OTP (mocked)
-    """
-
     def post(self, request):
-        phone = request.data.get("phone_number")
+        phone = normalize_phone_number(request.data.get("phone_number"))
 
-        if not phone:
+        if len(phone) < 10 or len(phone) > 15:
             return Response(
-                {"error": "Phone number required"},
+                {"error": "Enter a valid phone number"},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
@@ -35,39 +42,43 @@ class RequestOTPView(APIView):
         # DEV ONLY (Phase 1)
         print("DEV OTP:", otp)
 
+        payload = {"message": "OTP sent successfully"}
+        if settings.DEBUG:
+            payload["debug_otp"] = otp
+
         return Response(
-            {"message": "OTP sent successfully"},
+            payload,
             status=status.HTTP_200_OK
         )
 
-from clinic.models import AvailabilitySlot
-from .models import Appointment, OTPVerification
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
-
-
-
-from django.db import transaction
-from clinic.models import TimeSlot
-from .models import Appointment, OTPVerification
-from django.contrib.auth import get_user_model
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-
-User = get_user_model()
-
 
 class BookAppointmentView(APIView):
-
     def post(self, request):
-        phone = request.data.get("phone_number")
-        otp = request.data.get("otp")
+        phone = normalize_phone_number(request.data.get("phone_number"))
+        otp = str(request.data.get("otp", "")).strip()
         slot_id = request.data.get("slot_id")
-        name = request.data.get("name")
+        name = str(request.data.get("name", "")).strip()
         age = request.data.get("age")
-        sex = request.data.get("sex")
+        sex = str(request.data.get("sex", "")).strip()
+
+        if len(phone) < 10 or len(phone) > 15:
+            return Response({"error": "Enter a valid phone number"}, status=400)
+        if len(otp) != 6:
+            return Response({"error": "Enter the 6-digit verification code"}, status=400)
+        if not slot_id:
+            return Response({"error": "Choose a time slot before confirming"}, status=400)
+        if not name:
+            return Response({"error": "Patient name is required"}, status=400)
+        if not sex:
+            return Response({"error": "Select a sex value"}, status=400)
+
+        try:
+            age = int(age)
+        except (TypeError, ValueError):
+            return Response({"error": "Enter a valid age"}, status=400)
+
+        if age <= 0:
+            return Response({"error": "Enter a valid age"}, status=400)
 
         # 1. Verify OTP
         try:
@@ -93,11 +104,12 @@ class BookAppointmentView(APIView):
             with transaction.atomic():
                 slot = (
                     TimeSlot.objects
+                    .select_related("availability", "availability__doctor", "availability__doctor__user")
                     .select_for_update()
                     .get(id=slot_id, is_booked=False)
                 )
 
-                Appointment.objects.create(
+                appointment = Appointment.objects.create(
                     patient=user,
                     slot=slot,
                     name=name,
@@ -106,9 +118,26 @@ class BookAppointmentView(APIView):
                 )
 
                 slot.is_booked = True
-                slot.save()
+                slot.save(update_fields=["is_booked"])
 
         except TimeSlot.DoesNotExist:
             return Response({"error": "Slot unavailable"}, status=400)
 
-        return Response({"message": "Appointment booked"}, status=201)
+        return Response(
+            {
+                "message": "Appointment booked",
+                "appointment": {
+                    "id": appointment.id,
+                    "name": appointment.name,
+                    "age": appointment.age,
+                    "sex": appointment.sex,
+                    "phone_number": phone,
+                    "date": slot.availability.date,
+                    "start_time": slot.start_time,
+                    "end_time": slot.end_time,
+                    "doctor_name": get_doctor_name(slot.availability.doctor),
+                    "specialization": slot.availability.doctor.specialization,
+                },
+            },
+            status=201,
+        )

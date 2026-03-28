@@ -1,0 +1,34 @@
+import { Link } from "react-router-dom";
+
+export default function NotFound() {
+  return (
+    <div className="py-10">
+      <div className="rounded-[36px] border border-[var(--color-line)] bg-[linear-gradient(145deg,var(--color-paper),#f8fcfb)] p-8 text-center shadow-[0_24px_60px_rgba(36,53,51,0.06)]">
+        <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-wood)]">
+          Page missing
+        </p>
+        <h1 className="mt-3 font-serif text-4xl text-[var(--color-ink)]">
+          This route does not exist in the clinic flow.
+        </h1>
+        <p className="mt-4 text-sm leading-7 text-[var(--color-mist)]">
+          Use the home page to review Dr. Deepti Sinha&apos;s profile or jump straight into the
+          appointment booking flow.
+        </p>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <Link
+            className="inline-flex items-center justify-center rounded-full bg-[var(--color-cyan-deep)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-cyan)]"
+            to="/"
+          >
+            Go home
+          </Link>
+          <Link
+            className="inline-flex items-center justify-center rounded-full border border-[rgba(138,102,72,0.26)] bg-[var(--color-paper-soft)] px-6 py-3 text-sm font-semibold text-[var(--color-wood-deep)] transition hover:bg-[var(--color-wood-soft)]"
+            to="/book"
+          >
+            Open booking
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

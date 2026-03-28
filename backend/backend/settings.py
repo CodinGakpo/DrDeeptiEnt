@@ -10,17 +10,48 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+def load_local_env(env_path):
+    values = {}
+
+    if not env_path.exists():
+        return values
+
+    for raw_line in env_path.read_text().splitlines():
+        line = raw_line.strip()
+
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip()
+
+        if value.startswith(("'", '"')) and value.endswith(("'", '"')):
+            value = value[1:-1]
+
+        values[key] = value
+
+    return values
+
+
+LOCAL_ENV = load_local_env(BASE_DIR / ".env")
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jksl1%7%hrbd$xa_p=uds-e504etomje@=gjr@c4*m_ot4(x@7'
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    'django-insecure-jksl1%7%hrbd$xa_p=uds-e504etomje@=gjr@c4*m_ot4(x@7',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,6 +59,8 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 AUTH_USER_MODEL = 'accounts.User'
+DOCTOR_ACCESS_USERNAME = LOCAL_ENV.get("username", "")
+DOCTOR_ACCESS_PASSWORD = LOCAL_ENV.get("password", "")
 
 # Application definition
 

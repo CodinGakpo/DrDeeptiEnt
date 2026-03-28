@@ -1,6 +1,7 @@
+from datetime import datetime, timedelta
+
 from django.conf import settings
-from django.db import models
-from datetime import timedelta, datetime
+from django.db import connection, models
 
 
 User = settings.AUTH_USER_MODEL
@@ -26,6 +27,29 @@ class AvailabilitySlot(models.Model):
 
     def __str__(self):
         return f"{self.date} {self.start_time}-{self.end_time}"
+
+    def save(self, *args, **kwargs):
+        previous_values = None
+
+        if self.pk:
+            previous_values = (
+                AvailabilitySlot.objects.filter(pk=self.pk)
+                .values("date", "start_time", "end_time")
+                .first()
+            )
+
+        super().save(*args, **kwargs)
+
+        schedule_changed = (
+            previous_values is None
+            or previous_values["date"] != self.date
+            or previous_values["start_time"] != self.start_time
+            or previous_values["end_time"] != self.end_time
+        )
+
+        if schedule_changed and "clinic_timeslot" in connection.introspection.table_names():
+            self.generate_time_slots()
+
     def generate_time_slots(self, interval_minutes=15):
         self.time_slots.all().delete()
 
@@ -57,17 +81,3 @@ class TimeSlot(models.Model):
 
     def __str__(self):
         return f"{self.availability.date} {self.start_time}-{self.end_time}"
-
-
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
-from django.db import connection
-
-@receiver(post_save, sender=AvailabilitySlot)
-def create_time_slots(sender, instance, created, **kwargs):
-    # Prevent execution before TimeSlot table exists
-    if "clinic_timeslot" not in connection.introspection.table_names():
-        return
-
-    instance.generate_time_slots()

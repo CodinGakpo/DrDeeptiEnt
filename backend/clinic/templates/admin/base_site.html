@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}
+Beacon Clinic Console{% if subtitle %} | {{ subtitle }}{% endif %}
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'clinic/admin-overrides.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div class="brand-lockup">
+  <a class="brand-lockup__title" href="{% url 'admin:index' %}">Beacon Clinic Console</a>
+  <p class="brand-lockup__meta">Doctor schedules, time slots, and confirmed appointments in one place.</p>
+</div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
