@@ -28,7 +28,7 @@ export default function DoctorProfile() {
       <section className="grid gap-6 lg:grid-cols-[1.04fr_0.96fr]">
         <div className="rounded-[36px] border border-[var(--color-line)] bg-[linear-gradient(145deg,var(--color-paper),#f8fcfb)] p-7 shadow-[0_24px_60px_rgba(36,53,51,0.08)] md:p-10">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-wood)]">
-            Doctor profile
+            ENT consultation profile
           </p>
 
           <div className="mt-5 flex flex-wrap items-start gap-5">
@@ -36,12 +36,12 @@ export default function DoctorProfile() {
               {doctor.initials}
             </div>
 
-            <div>
+            <div className="max-w-3xl">
               <h1 className="font-serif text-4xl text-[var(--color-ink)]">{doctor.name}</h1>
               <p className="mt-2 text-lg font-semibold text-[var(--color-cyan-deep)]">
-                {doctor.professionalTitle}
+                {doctor.professionalTitle} at {doctor.currentPracticeShort}
               </p>
-              <p className="mt-2 max-w-3xl text-sm leading-7 text-[var(--color-mist)]">
+              <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
                 {doctor.credentials} | {doctor.headline}
               </p>
             </div>
@@ -50,6 +50,21 @@ export default function DoctorProfile() {
           <p className="mt-6 max-w-3xl text-base leading-8 text-[var(--color-mist)]">
             {doctor.summary} {doctor.mission}
           </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              className="inline-flex items-center justify-center rounded-full bg-[var(--color-cyan-deep)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-cyan)]"
+              to={doctor.appointmentLink}
+            >
+              Book an appointment
+            </Link>
+            <a
+              className="inline-flex items-center justify-center rounded-full border border-[rgba(138,102,72,0.26)] bg-[var(--color-paper-soft)] px-6 py-3 text-sm font-semibold text-[var(--color-wood-deep)] transition hover:bg-[var(--color-wood-soft)]"
+              href="#doctor-background"
+            >
+              View doctor background
+            </a>
+          </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             <div className="rounded-[24px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-5">
@@ -79,59 +94,41 @@ export default function DoctorProfile() {
                 Contact
               </p>
               <a
-                className="mt-3 block text-lg font-semibold text-[var(--color-cyan-deep)] transition hover:text-[var(--color-wood-deep)]"
+                className="mt-3 block break-all text-base font-semibold leading-7 text-[var(--color-cyan-deep)] transition hover:text-[var(--color-wood-deep)]"
                 href={`mailto:${doctor.email}`}
               >
                 {doctor.email}
               </a>
             </div>
           </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              className="inline-flex items-center justify-center rounded-full bg-[var(--color-cyan-deep)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-cyan)]"
-              to={doctor.appointmentLink}
-            >
-              Book with {doctor.name}
-            </Link>
-            <a
-              className="inline-flex items-center justify-center rounded-full border border-[rgba(138,102,72,0.26)] bg-[var(--color-paper-soft)] px-6 py-3 text-sm font-semibold text-[var(--color-wood-deep)] transition hover:bg-[var(--color-wood-soft)]"
-              href="/admin/"
-            >
-              Review clinic admin
-            </a>
-          </div>
         </div>
 
         <div className="space-y-5">
           <div className="rounded-[32px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#eef7f5,var(--color-paper))] p-6 shadow-[0_20px_48px_rgba(36,53,51,0.05)]">
             <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-wood)]">
-              Clinical focus
+              When patients should consider booking
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {doctor.focusAreas.map((item) => (
-                <span
+            <div className="mt-4 space-y-3">
+              {doctor.bookingReasons.map((item) => (
+                <div
                   key={item}
-                  className="rounded-full border border-[var(--color-line)] bg-white px-4 py-2 text-sm text-[var(--color-ink)]"
+                  className="rounded-[20px] border border-[var(--color-line)] bg-white px-4 py-4 text-sm leading-7 text-[var(--color-ink)]"
                 >
                   {item}
-                </span>
+                </div>
               ))}
             </div>
           </div>
 
           <div className="rounded-[32px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#fffdf9,#f8f2ea)] p-6 shadow-[0_20px_48px_rgba(36,53,51,0.05)]">
             <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-wood)]">
-              Consultation style
+              Why patients book here
             </p>
-            <p className="mt-4 text-sm leading-7 text-[var(--color-mist)]">
-              {doctor.careStyle}
-            </p>
-            <ul className="mt-5 space-y-3 text-sm leading-7 text-[var(--color-ink)]">
-              {doctor.expectations.map((item) => (
+            <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--color-mist)]">
+              {doctor.whyBookNow.map((item) => (
                 <li
                   key={item}
-                  className="rounded-[20px] border border-[rgba(138,102,72,0.18)] bg-white/80 px-4 py-3"
+                  className="rounded-[20px] border border-[rgba(138,102,72,0.18)] bg-white/80 px-4 py-3 text-[var(--color-ink)]"
                 >
                   {item}
                 </li>
@@ -141,10 +138,62 @@ export default function DoctorProfile() {
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr]">
+      <section className="grid gap-6 lg:grid-cols-[0.96fr_1.04fr]">
         <div className="rounded-[34px] border border-[var(--color-line)] bg-[var(--color-paper)] p-7 shadow-[0_22px_52px_rgba(36,53,51,0.05)]">
           <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-wood)]">
-            Work experience
+            What this consultation helps with
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {doctor.focusAreas.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-[var(--color-line)] bg-[var(--color-cyan-soft)] px-4 py-2 text-sm text-[var(--color-cyan-deep)]"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {doctor.bookingJourney.map((item, index) => (
+              <article
+                key={item}
+                className="rounded-[24px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-5"
+              >
+                <p className="text-2xl font-serif text-[var(--color-wood)]">0{index + 1}</p>
+                <p className="mt-3 text-sm leading-7 text-[var(--color-ink)]">{item}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-[34px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#fefcf8,#fff)] p-7 shadow-[0_22px_52px_rgba(36,53,51,0.05)]">
+          <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-wood)]">
+            Clinical approach
+          </p>
+          <h2 className="mt-3 font-serif text-3xl text-[var(--color-ink)]">
+            Evidence-based ENT care with emphasis on long-term breathing, sinus, and ear health.
+          </h2>
+          <p className="mt-4 text-sm leading-8 text-[var(--color-mist)]">
+            {doctor.careStyle}
+          </p>
+          <ul className="mt-5 space-y-3 text-sm leading-7 text-[var(--color-ink)]">
+            {doctor.expectations.map((item) => (
+              <li
+                key={item}
+                className="rounded-[20px] border border-[var(--color-line)] bg-white px-4 py-3"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="doctor-background" className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr]">
+        <div className="rounded-[34px] border border-[var(--color-line)] bg-[var(--color-paper)] p-7 shadow-[0_22px_52px_rgba(36,53,51,0.05)]">
+          <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-wood)]">
+            Doctor background
           </p>
           <div className="mt-5 space-y-5">
             {doctor.timeline.map((item) => (

@@ -18,6 +18,16 @@ const doctorProfile = {
     "I help people suffering from nasal blockage, rhinosinusitis, and allergies, with strong experience in both medical and surgical treatment of nose and sinus disorders.",
   careStyle:
     "Evidence-based ENT care with a special interest in endoscopic sinus surgery, vertigo diagnosis and management, and thoughtful long-term treatment planning.",
+  bookingReasons: [
+    "Persistent nasal blockage, recurrent sinus issues, or allergy symptoms affecting daily comfort",
+    "Ear pain, discharge, hearing loss, tinnitus, or a sense of blocked ears",
+    "Dizziness, vertigo, or balance-related symptoms that need ENT evaluation",
+  ],
+  whyBookNow: [
+    "Early diagnosis can simplify treatment and prevent complications.",
+    "Structured hospital-based ENT care helps patients move from symptoms to treatment clearly.",
+    "The clinic flow is designed for direct booking with one specialist instead of a confusing directory.",
+  ],
   focusAreas: [
     "Nasal blockage and rhinosinusitis",
     "Allergies and nose and sinus disorders",
@@ -107,6 +117,11 @@ const doctorProfile = {
   languages: [
     "Hindi and English",
     "French DELF A1",
+  ],
+  bookingJourney: [
+    "Review the doctor profile first and understand whether the condition fits ENT care.",
+    "Choose from the currently published dates and 15-minute consultation slots.",
+    "Verify the phone number and receive a clear appointment summary.",
   ],
   publicAdvice: [
     {
