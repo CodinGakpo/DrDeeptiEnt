@@ -6,6 +6,7 @@ import DoctorAccess from "./pages/DoctorAccess";
 import DoctorProfile from "./pages/DoctorProfile";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import Recognition from "./pages/Recognition";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: "book",
         element: <BookAppointment />,
+      },
+      {
+        path: "recognition",
+        element: <Recognition />,
       },
       {
         path: "doctors/:doctorId",
