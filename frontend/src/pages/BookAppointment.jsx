@@ -13,12 +13,12 @@ const bookingSteps = [
   {
     step: 1,
     title: "Choose doctor",
-    description: "Review Dr. Deepti Sinha's profile and move into her schedule.",
+    description: "Review the consultant profile before moving into the schedule.",
   },
   {
     step: 2,
     title: "Choose day",
-    description: "Pick the date before loading the published clinic schedule.",
+    description: "Pick the visit date before loading the published timings.",
   },
   {
     step: 3,
@@ -58,13 +58,13 @@ const initialOtpState = {
 };
 
 const fieldClassName =
-  "w-full rounded-[20px] border border-[var(--color-line)] bg-[var(--color-paper)] px-4 py-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-mist)] focus:border-[rgba(45,124,119,0.32)] focus:bg-[var(--color-paper-soft)]";
+  "w-full rounded-[18px] border border-[var(--color-line)] bg-[var(--color-paper)] px-4 py-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-mist)] focus:border-[rgba(45,124,119,0.32)] focus:bg-[var(--color-paper-soft)]";
 
 function SummaryRow({ label, value }) {
   return (
-    <div className="flex items-start justify-between gap-4 border-b border-[var(--color-line)] py-3 last:border-b-0">
+    <div className="flex flex-col gap-1 border-b border-[var(--color-line)] py-3 last:border-b-0 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
       <dt className="text-sm text-[var(--color-mist)]">{label}</dt>
-      <dd className="text-right text-sm font-medium text-[var(--color-ink)]">{value}</dd>
+      <dd className="text-sm font-medium text-[var(--color-ink)] sm:text-right">{value}</dd>
     </div>
   );
 }
@@ -291,32 +291,46 @@ export default function BookAppointment() {
   }
 
   return (
-    <div className="space-y-8 py-6 md:py-10">
-      <section className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-        <div className="rounded-[32px] border border-[var(--color-line)] bg-[linear-gradient(145deg,var(--color-paper),#f8fcfb)] p-6 shadow-[0_22px_52px_rgba(36,53,51,0.06)] md:p-7">
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-wood)]">
+    <div className="space-y-6 py-4 sm:space-y-8 sm:py-6 lg:py-8">
+      <section className="space-y-4">
+        <div className="rounded-[28px] border border-[var(--color-line)] bg-[linear-gradient(145deg,var(--color-paper),#f8fcfb)] p-5 shadow-[0_22px_52px_rgba(36,53,51,0.06)] sm:p-7">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-[var(--color-wood)]">
             Appointment pipeline
           </p>
-          <h1 className="mt-4 font-serif text-4xl text-[var(--color-ink)]">
-            Book a specialist ENT visit with calm, hospital-style clarity.
+          <h1 className="mt-4 font-serif text-3xl leading-tight text-[var(--color-ink)] sm:text-4xl">
+            Book a specialist ENT visit with a clean, mobile-first flow.
           </h1>
           <p className="mt-4 text-sm leading-7 text-[var(--color-mist)]">
-            The booking flow starts with the doctor, then moves into schedule, patient details,
-            and verification without unnecessary clutter.
+            Patients can move from doctor profile to schedule, details, and confirmation without
+            unnecessary clutter.
           </p>
 
-          <div className="mt-6 space-y-3">
-            {bookingSteps.map((item) => {
-              const isActive = step === item.step;
-              const isComplete = step > item.step;
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <span className="inline-flex self-start rounded-full border border-[var(--color-line)] bg-white px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-[var(--color-wood)]">
+              Step {step} of 6
+            </span>
+            <Link
+              className="text-sm font-semibold text-[var(--color-cyan-deep)] transition hover:text-[var(--color-wood-deep)]"
+              to="/"
+            >
+              Return home
+            </Link>
+          </div>
+        </div>
 
-              return (
-                <button
-                  key={item.step}
-                  type="button"
-                  onClick={() => jumpBack(item.step)}
-                  className={`flex w-full items-start gap-4 rounded-[22px] border px-4 py-4 text-left transition ${isActive ? "border-[rgba(45,124,119,0.3)] bg-[var(--color-cyan-soft)]" : "border-[var(--color-line)] bg-[var(--color-paper-soft)]"} ${item.step < step ? "hover:border-[rgba(138,102,72,0.24)] hover:bg-[var(--color-paper)]" : ""}`}
-                >
+        <div className="no-scrollbar flex gap-3 overflow-x-auto pb-1 lg:grid lg:grid-cols-3 lg:overflow-visible xl:grid-cols-6">
+          {bookingSteps.map((item) => {
+            const isActive = step === item.step;
+            const isComplete = step > item.step;
+
+            return (
+              <button
+                key={item.step}
+                type="button"
+                onClick={() => jumpBack(item.step)}
+                className={`min-w-[220px] rounded-[22px] border px-4 py-4 text-left transition lg:min-w-0 ${isActive ? "border-[rgba(45,124,119,0.3)] bg-[var(--color-cyan-soft)]" : "border-[var(--color-line)] bg-[var(--color-paper-soft)]"} ${item.step < step ? "hover:border-[rgba(138,102,72,0.24)] hover:bg-[var(--color-paper)]" : ""}`}
+              >
+                <div className="flex items-start gap-3">
                   <span
                     className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${isComplete ? "bg-[var(--color-cyan-deep)] text-white" : isActive ? "bg-white text-[var(--color-cyan-deep)]" : "border border-[var(--color-line)] text-[var(--color-mist)]"}`}
                   >
@@ -329,28 +343,23 @@ export default function BookAppointment() {
                       {item.description}
                     </p>
                   </div>
-                </button>
-              );
-            })}
-          </div>
+                </div>
+              </button>
+            );
+          })}
         </div>
+      </section>
 
-        <aside className="rounded-[32px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#fefcf8,#ffffff)] p-6 shadow-[0_22px_52px_rgba(36,53,51,0.05)] md:p-7">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-wood)]">
-                Live summary
-              </p>
-              <h2 className="mt-2 text-2xl font-semibold text-[var(--color-ink)]">
-                Current booking state
-              </h2>
-            </div>
-            <span className="rounded-full border border-[var(--color-line)] bg-white px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-[var(--color-wood)]">
-              Step {step} of 6
-            </span>
-          </div>
+      <section className="grid gap-4 xl:grid-cols-[1.08fr_0.92fr]">
+        <aside className="order-1 rounded-[28px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#fefcf8,#ffffff)] p-5 shadow-[0_22px_52px_rgba(36,53,51,0.05)] sm:p-6 xl:order-2">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--color-wood)]">
+            Live summary
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold text-[var(--color-ink)]">
+            Current booking state
+          </h2>
 
-          <dl className="mt-6">
+          <dl className="mt-5">
             <SummaryRow label="Doctor" value={selectedSummary.doctor} />
             <SummaryRow label="Date" value={selectedSummary.date} />
             <SummaryRow label="Time" value={selectedSummary.slot} />
@@ -359,7 +368,7 @@ export default function BookAppointment() {
           </dl>
 
           {selectedDoctorProfile ? (
-            <div className="mt-6 rounded-[24px] border border-[var(--color-line)] bg-[var(--color-cyan-soft)] p-5">
+            <div className="mt-5 rounded-[22px] border border-[var(--color-line)] bg-[var(--color-cyan-soft)] p-4">
               <p className="text-sm font-semibold text-[var(--color-ink)]">
                 {selectedDoctorProfile.name}
               </p>
@@ -370,27 +379,22 @@ export default function BookAppointment() {
                 {selectedDoctorProfile.careStyle}
               </p>
             </div>
-          ) : null}
+          ) : (
+            <div className="mt-5 rounded-[22px] border border-dashed border-[var(--color-line)] bg-[var(--color-paper-soft)] p-4 text-sm leading-7 text-[var(--color-mist)]">
+              Select the doctor first to see the full visit summary here.
+            </div>
+          )}
         </aside>
-      </section>
 
-      <section className="rounded-[34px] border border-[var(--color-line)] bg-[var(--color-paper)] p-6 shadow-[0_22px_52px_rgba(36,53,51,0.05)] md:p-8">
-        <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-wood)]">
+        <section className="order-2 rounded-[28px] border border-[var(--color-line)] bg-[var(--color-paper)] p-5 shadow-[0_22px_52px_rgba(36,53,51,0.05)] sm:p-7 xl:order-1">
+          <div className="mb-6">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--color-wood)]">
               Booking workspace
             </p>
             <h2 className="mt-2 font-serif text-3xl text-[var(--color-ink)]">
               Complete the appointment setup
             </h2>
           </div>
-          <Link
-            className="text-sm font-semibold text-[var(--color-cyan-deep)] transition hover:text-[var(--color-wood-deep)]"
-            to="/"
-          >
-            Return home
-          </Link>
-        </div>
 
         {visibleError ? (
           <div className="mb-6 rounded-[22px] border border-[rgba(164,79,79,0.18)] bg-[rgba(164,79,79,0.08)] px-4 py-3 text-sm text-[var(--color-danger)]">
@@ -411,7 +415,7 @@ export default function BookAppointment() {
             </div>
 
             {loadingDoctors && !doctors.length ? (
-              <div className="rounded-[28px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-6 text-sm text-[var(--color-mist)]">
+              <div className="rounded-[24px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-5 text-sm text-[var(--color-mist)]">
                 Loading doctor profile...
               </div>
             ) : (
@@ -425,7 +429,7 @@ export default function BookAppointment() {
         ) : null}
 
         {step === 2 ? (
-          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="grid gap-4 lg:grid-cols-[1.02fr_0.98fr]">
             <div className="space-y-5">
               <div>
                 <h3 className="text-2xl font-semibold text-[var(--color-ink)]">
@@ -436,7 +440,7 @@ export default function BookAppointment() {
                 </p>
               </div>
 
-              <div className="rounded-[28px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-5">
+              <div className="rounded-[24px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-4 sm:p-5">
                 <label className="text-sm font-medium text-[var(--color-ink)]" htmlFor="visit-date">
                   Visit date
                 </label>
@@ -453,19 +457,19 @@ export default function BookAppointment() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-3">
-                <Button className="sm:w-auto" onClick={handleLoadSchedule} variant="primary">
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button className="w-full sm:w-auto" onClick={handleLoadSchedule} variant="primary">
                   {loadingSlots ? "Loading schedule..." : "Show schedule"}
                 </Button>
-                <Button className="sm:w-auto" onClick={() => jumpBack(1)} variant="ghost">
+                <Button className="w-full sm:w-auto" onClick={() => jumpBack(1)} variant="ghost">
                   Back to doctor list
                 </Button>
               </div>
             </div>
 
             {selectedDoctorProfile ? (
-              <div className="rounded-[30px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#eef7f5,#ffffff)] p-6">
-                <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-wood)]">
+              <div className="rounded-[24px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#eef7f5,#ffffff)] p-5">
+                <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--color-wood)]">
                   Selected doctor
                 </p>
                 <h4 className="mt-3 text-xl font-semibold text-[var(--color-ink)]">
@@ -484,7 +488,7 @@ export default function BookAppointment() {
 
         {step === 3 ? (
           <div className="space-y-6">
-            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h3 className="text-2xl font-semibold text-[var(--color-ink)]">
                   Choose a time slot
@@ -499,7 +503,7 @@ export default function BookAppointment() {
             </div>
 
             {loadingSlots ? (
-              <div className="rounded-[28px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-6 text-sm text-[var(--color-mist)]">
+              <div className="rounded-[24px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-5 text-sm text-[var(--color-mist)]">
                 Loading slots...
               </div>
             ) : slots.length ? (
@@ -513,24 +517,24 @@ export default function BookAppointment() {
                 slots={slots}
               />
             ) : (
-              <div className="rounded-[28px] border border-dashed border-[var(--color-line)] bg-[var(--color-paper-soft)] p-8 text-center">
+              <div className="rounded-[24px] border border-dashed border-[var(--color-line)] bg-[var(--color-paper-soft)] p-6 text-center">
                 <p className="text-lg font-semibold text-[var(--color-ink)]">
                   No schedule was published for that day.
                 </p>
-                <p className="mt-2 text-sm text-[var(--color-mist)]">
-                  Try another date or update the schedule from the admin side.
+                <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
+                  Try another date or check again later for newly published slots.
                 </p>
               </div>
             )}
 
-            <Button onClick={() => jumpBack(2)} variant="ghost">
+            <Button className="w-full sm:w-auto" onClick={() => jumpBack(2)} variant="ghost">
               Back to date selection
             </Button>
           </div>
         ) : null}
 
         {step === 4 ? (
-          <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr]">
+          <div className="grid gap-4 lg:grid-cols-[1.02fr_0.98fr]">
             <div className="space-y-5">
               <div>
                 <h3 className="text-2xl font-semibold text-[var(--color-ink)]">
@@ -603,18 +607,18 @@ export default function BookAppointment() {
                 </label>
               </div>
 
-              <div className="flex flex-wrap gap-3">
-                <Button className="sm:w-auto" onClick={handleContinueToVerification}>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button className="w-full sm:w-auto" onClick={handleContinueToVerification}>
                   Continue to verification
                 </Button>
-                <Button className="sm:w-auto" onClick={() => jumpBack(3)} variant="ghost">
+                <Button className="w-full sm:w-auto" onClick={() => jumpBack(3)} variant="ghost">
                   Back to time slots
                 </Button>
               </div>
             </div>
 
-            <div className="rounded-[30px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#fffdf9,#ffffff)] p-6">
-              <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-wood)]">
+            <div className="rounded-[24px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#fffdf9,#ffffff)] p-5">
+              <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--color-wood)]">
                 Visit snapshot
               </p>
               <h4 className="mt-3 text-xl font-semibold text-[var(--color-ink)]">
@@ -636,7 +640,7 @@ export default function BookAppointment() {
         ) : null}
 
         {step === 5 ? (
-          <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr]">
+          <div className="grid gap-4 lg:grid-cols-[1.02fr_0.98fr]">
             <div className="space-y-5">
               <div>
                 <h3 className="text-2xl font-semibold text-[var(--color-ink)]">
@@ -647,18 +651,18 @@ export default function BookAppointment() {
                 </p>
               </div>
 
-              <div className="rounded-[28px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-5">
+              <div className="rounded-[24px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-4 sm:p-5">
                 <p className="text-sm font-semibold text-[var(--color-ink)]">Step 1: send the OTP</p>
                 <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
                   We will send the verification code to {patientForm.phone || "the patient phone number"}.
                 </p>
-                <Button className="mt-4 sm:w-auto" onClick={handleRequestOtp} variant="secondary">
+                <Button className="mt-4 w-full sm:w-auto" onClick={handleRequestOtp} variant="secondary">
                   {otpState.loading ? "Sending code..." : otpState.requested ? "Resend code" : "Send code"}
                 </Button>
               </div>
 
               {otpState.requested ? (
-                <div className="rounded-[28px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-5">
+                <div className="rounded-[24px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-4 sm:p-5">
                   <p className="text-sm font-semibold text-[var(--color-ink)]">Step 2: enter the OTP</p>
                   <p className="mt-2 text-sm text-[var(--color-mist)]">
                     {otpState.message}
@@ -685,11 +689,11 @@ export default function BookAppointment() {
                     />
                   </label>
 
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    <Button className="sm:w-auto" onClick={handleConfirmAppointment} variant="primary">
+                  <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                    <Button className="w-full sm:w-auto" onClick={handleConfirmAppointment} variant="primary">
                       {bookingLoading ? "Confirming..." : "Confirm appointment"}
                     </Button>
-                    <Button className="sm:w-auto" onClick={() => jumpBack(4)} variant="ghost">
+                    <Button className="w-full sm:w-auto" onClick={() => jumpBack(4)} variant="ghost">
                       Back to patient details
                     </Button>
                   </div>
@@ -697,8 +701,8 @@ export default function BookAppointment() {
               ) : null}
             </div>
 
-            <div className="rounded-[30px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#eef7f5,#fff)] p-6">
-              <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-wood)]">
+            <div className="rounded-[24px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#eef7f5,#fff)] p-5">
+              <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--color-wood)]">
                 Before you confirm
               </p>
               <ul className="mt-4 space-y-3">
@@ -717,14 +721,14 @@ export default function BookAppointment() {
 
         {step === 6 ? (
           <div className="space-y-6 text-center">
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-cyan),var(--color-cyan-deep))] text-3xl font-semibold text-white shadow-[0_18px_36px_rgba(45,124,119,0.16)]">
+            <div className="mx-auto flex h-18 w-18 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-cyan),var(--color-cyan-deep))] px-5 py-5 text-2xl font-semibold text-white shadow-[0_18px_36px_rgba(45,124,119,0.16)] sm:h-20 sm:w-20 sm:text-3xl">
               OK
             </div>
             <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-wood)]">
+              <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--color-wood)]">
                 Appointment confirmed
               </p>
-              <h3 className="mt-3 font-serif text-4xl text-[var(--color-ink)]">
+              <h3 className="mt-3 font-serif text-3xl text-[var(--color-ink)] sm:text-4xl">
                 Everything is booked.
               </h3>
               <p className="mt-3 text-sm leading-7 text-[var(--color-mist)]">
@@ -733,7 +737,7 @@ export default function BookAppointment() {
             </div>
 
             {receipt ? (
-              <div className="mx-auto max-w-2xl rounded-[30px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-6 text-left">
+              <div className="mx-auto max-w-2xl rounded-[24px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-5 text-left sm:p-6">
                 <dl>
                   <SummaryRow
                     label="Doctor"
@@ -754,19 +758,20 @@ export default function BookAppointment() {
               </div>
             ) : null}
 
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-col justify-center gap-3 sm:flex-row">
               <Link
-                className="inline-flex items-center justify-center rounded-full bg-[var(--color-cyan-deep)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-cyan)]"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[var(--color-cyan-deep)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-cyan)] sm:w-auto"
                 to="/"
               >
                 Return home
               </Link>
-              <Button className="sm:w-auto" onClick={startAnotherBooking} variant="ghost">
+              <Button className="w-full sm:w-auto" onClick={startAnotherBooking} variant="ghost">
                 Book another appointment
               </Button>
             </div>
           </div>
         ) : null}
+        </section>
       </section>
     </div>
   );
