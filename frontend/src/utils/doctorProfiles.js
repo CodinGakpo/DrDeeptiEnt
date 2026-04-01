@@ -13,7 +13,7 @@ const doctorProfile = {
   email: "drdeeptisinha@gmail.com",
   tagline: "Breathe Better, Live Better",
   summary:
-    "Senior ENT Consultant with 24 years of experience in medical practice, with proven expertise in comprehensive ENT diagnosis and treatment.",
+    "Senior ENT Consultant with 25 years of experience in medical practice, with proven expertise in comprehensive ENT diagnosis and treatment.",
   mission:
     "I help people suffering from nasal blockage, rhinosinusitis, and allergies, with strong experience in both medical and surgical treatment of nose and sinus disorders.",
   careStyle:
@@ -44,7 +44,7 @@ const doctorProfile = {
   quickFacts: [
     {
       label: "Experience",
-      value: "24 years",
+      value: "25 years",
       detail: "Senior ENT medical practice across major Delhi hospitals",
     },
     {

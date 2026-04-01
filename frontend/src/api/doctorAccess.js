@@ -17,6 +17,9 @@ export const logoutDoctorAccess = () =>
 export const getDoctorAvailability = () =>
   apiFetch("/clinic/doctor-access/availability/");
 
+export const getDoctorAppointments = () =>
+  apiFetch("/clinic/doctor-access/appointments/");
+
 export const createDoctorAvailability = (payload) =>
   apiFetch("/clinic/doctor-access/availability/", {
     method: "POST",

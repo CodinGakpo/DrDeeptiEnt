@@ -9,7 +9,7 @@ const navLinkClass = ({ isActive }) =>
 
 export default function App() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[var(--color-bg)] text-[var(--color-ink)]">
+    <div className="relative min-h-screen overflow-hidden bg-(--color-bg) text-(--color-ink)">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(118,183,177,0.16),transparent_34%),radial-gradient(circle_at_84%_10%,rgba(138,102,72,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.5),transparent_26%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[18rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.62),transparent)]" />
 
@@ -17,18 +17,13 @@ export default function App() {
         <header className="sticky top-0 z-30 border-b border-[rgba(97,115,111,0.12)] bg-[rgba(246,243,237,0.88)] backdrop-blur-xl">
           <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
             <div className="flex items-start justify-between gap-3 sm:items-center">
-              <NavLink className="min-w-0 flex items-center gap-3" to="/">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,var(--color-cyan),var(--color-cyan-deep))] text-sm font-bold text-white shadow-[0_16px_32px_rgba(45,124,119,0.18)]">
-                  DS
-                </span>
-                <div className="min-w-0">
-                  <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-wood)] sm:text-xs">
-                    ENT care in Delhi
-                  </p>
-                  <p className="truncate font-serif text-lg text-[var(--color-ink)] sm:text-xl">
-                    Dr. Deepti Sinha
-                  </p>
-                </div>
+              <NavLink className="min-w-0" to="/">
+                <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-wood)] sm:text-xs">
+                  ENT care in Delhi
+                </p>
+                <p className="truncate font-serif text-lg text-[var(--color-ink)] sm:text-xl">
+                  Dr. Deepti Sinha
+                </p>
               </NavLink>
 
               <NavLink

@@ -3,3 +3,4 @@ backend/*/__pycache__
 backend/*/migrations
 .env
 db.sqlite3
+notes.txt

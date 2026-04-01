@@ -1,13 +1,16 @@
 import secrets
 
 from django.conf import settings
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
+from django.utils import timezone
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from appointments.models import Appointment
 from .models import AvailabilitySlot, DoctorProfile, TimeSlot
 from .serializers import (
+    DoctorAccessAppointmentSerializer,
     DoctorAccessAvailabilityCreateSerializer,
     DoctorAccessAvailabilitySerializer,
     DoctorAccessAvailabilityStatusSerializer,
@@ -182,5 +185,62 @@ class DoctorAccessAvailabilityDetailView(APIView):
             {
                 "message": "Availability updated successfully.",
                 "availability": DoctorAccessAvailabilitySerializer(availability).data,
+            }
+        )
+
+
+class DoctorAccessAppointmentView(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request):
+        doctor = get_authenticated_doctor(request)
+
+        if doctor is None:
+            return Response(
+                {"error": "Authentication required."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        today = timezone.localdate()
+        current_time = timezone.localtime().time()
+
+        base_queryset = Appointment.objects.filter(
+            slot__availability__doctor=doctor
+        ).select_related(
+            "patient",
+            "slot",
+            "slot__availability",
+            "slot__availability__doctor",
+            "slot__availability__doctor__user",
+        )
+
+        upcoming_queryset = base_queryset.filter(
+            Q(slot__availability__date__gt=today)
+            | Q(slot__availability__date=today, slot__end_time__gte=current_time)
+        )
+        past_queryset = base_queryset.filter(
+            Q(slot__availability__date__lt=today)
+            | Q(slot__availability__date=today, slot__end_time__lt=current_time)
+        )
+
+        upcoming_queryset = upcoming_queryset.order_by(
+            "slot__availability__date", "slot__start_time", "created_at"
+        )
+        past_queryset = past_queryset.order_by(
+            "-slot__availability__date", "-slot__start_time", "-created_at"
+        )
+
+        return Response(
+            {
+                "doctor": DoctorProfileSerializer(doctor).data,
+                "appointments": {
+                    "upcoming": DoctorAccessAppointmentSerializer(
+                        upcoming_queryset, many=True
+                    ).data,
+                    "past": DoctorAccessAppointmentSerializer(
+                        past_queryset, many=True
+                    ).data,
+                },
             }
         )

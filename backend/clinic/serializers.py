@@ -1,6 +1,7 @@
 from django.utils import timezone
 from rest_framework import serializers
 
+from appointments.models import Appointment
 from .models import AvailabilitySlot, DoctorProfile, TimeSlot
 
 
@@ -77,6 +78,28 @@ class TimeSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeSlot
         fields = ["id", "date", "start_time", "end_time", "is_booked"]
+
+
+class DoctorAccessAppointmentSerializer(serializers.ModelSerializer):
+    date = serializers.DateField(source="slot.availability.date", read_only=True)
+    start_time = serializers.TimeField(source="slot.start_time", read_only=True)
+    end_time = serializers.TimeField(source="slot.end_time", read_only=True)
+    phone_number = serializers.CharField(source="patient.phone_number", read_only=True)
+    booked_at = serializers.DateTimeField(source="created_at", read_only=True)
+
+    class Meta:
+        model = Appointment
+        fields = [
+            "id",
+            "name",
+            "age",
+            "sex",
+            "phone_number",
+            "date",
+            "start_time",
+            "end_time",
+            "booked_at",
+        ]
 
 
 class DoctorAccessAvailabilitySerializer(serializers.ModelSerializer):
