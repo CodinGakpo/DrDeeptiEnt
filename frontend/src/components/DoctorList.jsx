@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import { formatShortDate } from "../utils/formatters";
 import { getDoctorProfileContent } from "../utils/doctorProfiles";
+import { doctorProfileImage } from "../utils/mediaGallery";
 
 export default function DoctorList({ doctors, onSelect, selectedDoctorId }) {
   if (!doctors.length) {
@@ -25,9 +26,11 @@ export default function DoctorList({ doctors, onSelect, selectedDoctorId }) {
             className={`rounded-[26px] border p-4 text-left transition duration-300 sm:p-5 ${isSelected ? "border-[rgba(45,124,119,0.28)] bg-[linear-gradient(145deg,#eef7f5,#ffffff)] shadow-[0_18px_42px_rgba(45,124,119,0.08)]" : "border-[var(--color-line)] bg-[var(--color-paper)] hover:border-[rgba(138,102,72,0.24)] hover:bg-[var(--color-paper-soft)]"}`}
           >
             <div className="flex flex-col gap-4 sm:flex-row">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[20px] bg-[linear-gradient(135deg,var(--color-cyan),var(--color-cyan-deep))] text-lg font-semibold text-white shadow-[0_14px_30px_rgba(45,124,119,0.16)]">
-                {profile.initials}
-              </div>
+              <img
+                alt={profile.name}
+                className="h-16 w-14 shrink-0 rounded-[20px] object-cover object-top shadow-[0_14px_30px_rgba(45,124,119,0.16)]"
+                src={doctorProfileImage}
+              />
 
               <div className="min-w-0 flex-1">
                 <div className="flex flex-col gap-3">

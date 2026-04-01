@@ -1,0 +1,1568 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-01-16T10:23:44.015Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "2",
+    "object_repr": "Dr",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-01-16T10:24:14.800Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Dr",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-01-16T10:25:27.967Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "2026-01-27 12:30:00-14:30:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-02-06T12:53:46.447Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "2026-02-06 08:00:00-13:00:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-02-07T05:24:20.713Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "Adi (12:00:00-12:15:00)",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-02-07T06:42:21.199Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "2026-02-15 08:00:00-14:30:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-03-28T16:52:46.367Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "2026-04-01 06:00:00-18:00:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "03mhairtlz6ftcmj6uykvjjf7qy4sogf",
+  "fields": {
+    "session_data": ".eJxVjMsOgjAUBf-la9OU20Jbl-79BnJfFdRAQmFl_HclYaHbMzPnZXrc1qHfqi79KOZsGnP63Qj5odMO5I7TbbY8T-sykt0Ve9Bqr7Po83K4fwcD1uFbO-QIjSMtyin6mAoBSeYcBcQTl44ZnYoHH6ILObWpawunTDEAKpj3BwT_OGw:1voLHz:ChZFvIaXTdks0quV_LhiF2HS-MTUIpyRgLl98G8jzP0",
+    "expire_date": "2026-02-20T12:50:23.086Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4iqrkt4up9hvkf5c0xj8130mp4aws0du",
+  "fields": {
+    "session_data": ".eJxVjMsOgjAUBf-la9OU20Jbl-79BnJfFdRAQmFl_HclYaHbMzPnZXrc1qHfqi79KOZsGnP63Qj5odMO5I7TbbY8T-sykt0Ve9Bqr7Po83K4fwcD1uFbO-QIjSMtyin6mAoBSeYcBcQTl44ZnYoHH6ILObWpawunTDEAKpj3BwT_OGw:1vo2iR:ddRcrg6JCvFvh181DPYdSQOKJYMojiASuJEHQvUgZss",
+    "expire_date": "2026-02-19T17:00:27.944Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7rn3nn7b3lroscuvyiyq8tqlomc6yxub",
+  "fields": {
+    "session_data": "eyJkb2N0b3JfYWNjZXNzX2F1dGhlbnRpY2F0ZWQiOnRydWV9:1w6YAZ:qukAmgtv_UoaSEGPoNYPfDZOduO-ZsVCbLsZw2WQp7E",
+    "expire_date": "2026-04-11T18:13:59.288Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fispr290wu3n6xfg5jo9usvlgxiws2og",
+  "fields": {
+    "session_data": "eyJkb2N0b3JfYWNjZXNzX2F1dGhlbnRpY2F0ZWQiOnRydWV9:1w78CJ:N2-6yyZN9fpLL45SI1n74jTqUYfEd1HvE2qi_EPWAxg",
+    "expire_date": "2026-04-13T08:42:11.632Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "l58q0mmbb3l9shpld01qw6su8b7cfxhd",
+  "fields": {
+    "session_data": ".eJxVjMsOgjAUBf-la9OU20Jbl-79BnJfFdRAQmFl_HclYaHbMzPnZXrc1qHfqi79KOZsGnP63Qj5odMO5I7TbbY8T-sykt0Ve9Bqr7Po83K4fwcD1uFbO-QIjSMtyin6mAoBSeYcBcQTl44ZnYoHH6ILObWpawunTDEAKpj3BwT_OGw:1vggyf:5KEBs-0O3kUg3XJBD4BHm5-Q_1HN4wPKOEPKBmdJLS8",
+    "expire_date": "2026-01-30T10:22:49.909Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vofbyw53pg89wlynb7iigsblv090n3hy",
+  "fields": {
+    "session_data": ".eJxVjMsOgjAUBf-la9OU20Jbl-79BnJfFdRAQmFl_HclYaHbMzPnZXrc1qHfqi79KOZsGnP63Qj5odMO5I7TbbY8T-sykt0Ve9Bqr7Po83K4fwcD1uFbO-QIjSMtyin6mAoBSeYcBcQTl44ZnYoHH6ILObWpawunTDEAKpj3BwT_OGw:1w6WtP:Lv7DZ1Qb7RV2r7ZlnjelhHYTTWb9ZtyQb8hPIrZ0zTE",
+    "expire_date": "2026-04-11T16:52:11.830Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "w9z29ffg73mwkvbd0kqrkdm2i0sjl6t9",
+  "fields": {
+    "session_data": "eyJkb2N0b3JfYWNjZXNzX2F1dGhlbnRpY2F0ZWQiOnRydWV9:1w6YFn:rclZNOC7_V9w4jVyO160ByxcVhruFQBZN8Hdh2o_4Wo",
+    "expire_date": "2026-04-11T18:19:23.452Z"
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$5g7EcD5ZJcttuPKC969fmh$yhy8jLlfHWAjsslW74KyiGY/DT6DZ3ZtUS5pt7UXAnA=",
+    "last_login": "2026-03-28T16:52:11.822Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-01-16T10:22:28.546Z",
+    "phone_number": "123",
+    "is_doctor": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 2,
+  "fields": {
+    "password": "Doctor",
+    "last_login": "2026-01-20T06:30:00Z",
+    "is_superuser": false,
+    "username": "Dr",
+    "first_name": "Testing",
+    "last_name": "Doctor",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-01-16T10:23:03Z",
+    "phone_number": "9999999999",
+    "is_doctor": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 3,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "8999999999",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-07T05:17:27.816Z",
+    "phone_number": "8999999999",
+    "is_doctor": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 4,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "7899999999",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-07T05:25:36.269Z",
+    "phone_number": "7899999999",
+    "is_doctor": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 5,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "11111111111",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-07T06:37:05.190Z",
+    "phone_number": "11111111111",
+    "is_doctor": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 6,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "9810797357",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-07T06:55:03.509Z",
+    "phone_number": "9810797357",
+    "is_doctor": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 7,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "9876543210",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-28T17:57:19.593Z",
+    "phone_number": "9876543210",
+    "is_doctor": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "clinic.doctorprofile",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "specialization": "ENT",
+    "bio": ""
+  }
+},
+{
+  "model": "clinic.availabilityslot",
+  "pk": 1,
+  "fields": {
+    "doctor": 1,
+    "date": "2026-01-27",
+    "start_time": "12:30:00",
+    "end_time": "14:30:00",
+    "is_active": false
+  }
+},
+{
+  "model": "clinic.availabilityslot",
+  "pk": 2,
+  "fields": {
+    "doctor": 1,
+    "date": "2026-02-06",
+    "start_time": "08:00:00",
+    "end_time": "13:00:00",
+    "is_active": true
+  }
+},
+{
+  "model": "clinic.availabilityslot",
+  "pk": 3,
+  "fields": {
+    "doctor": 1,
+    "date": "2026-02-15",
+    "start_time": "08:00:00",
+    "end_time": "14:30:00",
+    "is_active": true
+  }
+},
+{
+  "model": "clinic.availabilityslot",
+  "pk": 4,
+  "fields": {
+    "doctor": 1,
+    "date": "2026-04-01",
+    "start_time": "06:00:00",
+    "end_time": "18:00:00",
+    "is_active": true
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 1,
+  "fields": {
+    "availability": 2,
+    "start_time": "08:00:00",
+    "end_time": "08:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 2,
+  "fields": {
+    "availability": 2,
+    "start_time": "08:15:00",
+    "end_time": "08:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 3,
+  "fields": {
+    "availability": 2,
+    "start_time": "08:30:00",
+    "end_time": "08:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 4,
+  "fields": {
+    "availability": 2,
+    "start_time": "08:45:00",
+    "end_time": "09:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 5,
+  "fields": {
+    "availability": 2,
+    "start_time": "09:00:00",
+    "end_time": "09:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 6,
+  "fields": {
+    "availability": 2,
+    "start_time": "09:15:00",
+    "end_time": "09:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 7,
+  "fields": {
+    "availability": 2,
+    "start_time": "09:30:00",
+    "end_time": "09:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 8,
+  "fields": {
+    "availability": 2,
+    "start_time": "09:45:00",
+    "end_time": "10:00:00",
+    "is_booked": true
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 9,
+  "fields": {
+    "availability": 2,
+    "start_time": "10:00:00",
+    "end_time": "10:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 10,
+  "fields": {
+    "availability": 2,
+    "start_time": "10:15:00",
+    "end_time": "10:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 11,
+  "fields": {
+    "availability": 2,
+    "start_time": "10:30:00",
+    "end_time": "10:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 12,
+  "fields": {
+    "availability": 2,
+    "start_time": "10:45:00",
+    "end_time": "11:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 13,
+  "fields": {
+    "availability": 2,
+    "start_time": "11:00:00",
+    "end_time": "11:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 14,
+  "fields": {
+    "availability": 2,
+    "start_time": "11:15:00",
+    "end_time": "11:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 15,
+  "fields": {
+    "availability": 2,
+    "start_time": "11:30:00",
+    "end_time": "11:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 16,
+  "fields": {
+    "availability": 2,
+    "start_time": "11:45:00",
+    "end_time": "12:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 17,
+  "fields": {
+    "availability": 2,
+    "start_time": "12:00:00",
+    "end_time": "12:15:00",
+    "is_booked": true
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 18,
+  "fields": {
+    "availability": 2,
+    "start_time": "12:15:00",
+    "end_time": "12:30:00",
+    "is_booked": true
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 19,
+  "fields": {
+    "availability": 2,
+    "start_time": "12:30:00",
+    "end_time": "12:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 20,
+  "fields": {
+    "availability": 2,
+    "start_time": "12:45:00",
+    "end_time": "13:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 21,
+  "fields": {
+    "availability": 3,
+    "start_time": "08:00:00",
+    "end_time": "08:15:00",
+    "is_booked": true
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 22,
+  "fields": {
+    "availability": 3,
+    "start_time": "08:15:00",
+    "end_time": "08:30:00",
+    "is_booked": true
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 23,
+  "fields": {
+    "availability": 3,
+    "start_time": "08:30:00",
+    "end_time": "08:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 24,
+  "fields": {
+    "availability": 3,
+    "start_time": "08:45:00",
+    "end_time": "09:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 25,
+  "fields": {
+    "availability": 3,
+    "start_time": "09:00:00",
+    "end_time": "09:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 26,
+  "fields": {
+    "availability": 3,
+    "start_time": "09:15:00",
+    "end_time": "09:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 27,
+  "fields": {
+    "availability": 3,
+    "start_time": "09:30:00",
+    "end_time": "09:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 28,
+  "fields": {
+    "availability": 3,
+    "start_time": "09:45:00",
+    "end_time": "10:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 29,
+  "fields": {
+    "availability": 3,
+    "start_time": "10:00:00",
+    "end_time": "10:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 30,
+  "fields": {
+    "availability": 3,
+    "start_time": "10:15:00",
+    "end_time": "10:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 31,
+  "fields": {
+    "availability": 3,
+    "start_time": "10:30:00",
+    "end_time": "10:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 32,
+  "fields": {
+    "availability": 3,
+    "start_time": "10:45:00",
+    "end_time": "11:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 33,
+  "fields": {
+    "availability": 3,
+    "start_time": "11:00:00",
+    "end_time": "11:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 34,
+  "fields": {
+    "availability": 3,
+    "start_time": "11:15:00",
+    "end_time": "11:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 35,
+  "fields": {
+    "availability": 3,
+    "start_time": "11:30:00",
+    "end_time": "11:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 36,
+  "fields": {
+    "availability": 3,
+    "start_time": "11:45:00",
+    "end_time": "12:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 37,
+  "fields": {
+    "availability": 3,
+    "start_time": "12:00:00",
+    "end_time": "12:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 38,
+  "fields": {
+    "availability": 3,
+    "start_time": "12:15:00",
+    "end_time": "12:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 39,
+  "fields": {
+    "availability": 3,
+    "start_time": "12:30:00",
+    "end_time": "12:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 40,
+  "fields": {
+    "availability": 3,
+    "start_time": "12:45:00",
+    "end_time": "13:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 41,
+  "fields": {
+    "availability": 3,
+    "start_time": "13:00:00",
+    "end_time": "13:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 42,
+  "fields": {
+    "availability": 3,
+    "start_time": "13:15:00",
+    "end_time": "13:30:00",
+    "is_booked": true
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 43,
+  "fields": {
+    "availability": 3,
+    "start_time": "13:30:00",
+    "end_time": "13:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 44,
+  "fields": {
+    "availability": 3,
+    "start_time": "13:45:00",
+    "end_time": "14:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 45,
+  "fields": {
+    "availability": 3,
+    "start_time": "14:00:00",
+    "end_time": "14:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 46,
+  "fields": {
+    "availability": 3,
+    "start_time": "14:15:00",
+    "end_time": "14:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 47,
+  "fields": {
+    "availability": 4,
+    "start_time": "06:00:00",
+    "end_time": "06:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 48,
+  "fields": {
+    "availability": 4,
+    "start_time": "06:15:00",
+    "end_time": "06:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 49,
+  "fields": {
+    "availability": 4,
+    "start_time": "06:30:00",
+    "end_time": "06:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 50,
+  "fields": {
+    "availability": 4,
+    "start_time": "06:45:00",
+    "end_time": "07:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 51,
+  "fields": {
+    "availability": 4,
+    "start_time": "07:00:00",
+    "end_time": "07:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 52,
+  "fields": {
+    "availability": 4,
+    "start_time": "07:15:00",
+    "end_time": "07:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 53,
+  "fields": {
+    "availability": 4,
+    "start_time": "07:30:00",
+    "end_time": "07:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 54,
+  "fields": {
+    "availability": 4,
+    "start_time": "07:45:00",
+    "end_time": "08:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 55,
+  "fields": {
+    "availability": 4,
+    "start_time": "08:00:00",
+    "end_time": "08:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 56,
+  "fields": {
+    "availability": 4,
+    "start_time": "08:15:00",
+    "end_time": "08:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 57,
+  "fields": {
+    "availability": 4,
+    "start_time": "08:30:00",
+    "end_time": "08:45:00",
+    "is_booked": true
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 58,
+  "fields": {
+    "availability": 4,
+    "start_time": "08:45:00",
+    "end_time": "09:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 59,
+  "fields": {
+    "availability": 4,
+    "start_time": "09:00:00",
+    "end_time": "09:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 60,
+  "fields": {
+    "availability": 4,
+    "start_time": "09:15:00",
+    "end_time": "09:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 61,
+  "fields": {
+    "availability": 4,
+    "start_time": "09:30:00",
+    "end_time": "09:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 62,
+  "fields": {
+    "availability": 4,
+    "start_time": "09:45:00",
+    "end_time": "10:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 63,
+  "fields": {
+    "availability": 4,
+    "start_time": "10:00:00",
+    "end_time": "10:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 64,
+  "fields": {
+    "availability": 4,
+    "start_time": "10:15:00",
+    "end_time": "10:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 65,
+  "fields": {
+    "availability": 4,
+    "start_time": "10:30:00",
+    "end_time": "10:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 66,
+  "fields": {
+    "availability": 4,
+    "start_time": "10:45:00",
+    "end_time": "11:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 67,
+  "fields": {
+    "availability": 4,
+    "start_time": "11:00:00",
+    "end_time": "11:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 68,
+  "fields": {
+    "availability": 4,
+    "start_time": "11:15:00",
+    "end_time": "11:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 69,
+  "fields": {
+    "availability": 4,
+    "start_time": "11:30:00",
+    "end_time": "11:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 70,
+  "fields": {
+    "availability": 4,
+    "start_time": "11:45:00",
+    "end_time": "12:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 71,
+  "fields": {
+    "availability": 4,
+    "start_time": "12:00:00",
+    "end_time": "12:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 72,
+  "fields": {
+    "availability": 4,
+    "start_time": "12:15:00",
+    "end_time": "12:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 73,
+  "fields": {
+    "availability": 4,
+    "start_time": "12:30:00",
+    "end_time": "12:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 74,
+  "fields": {
+    "availability": 4,
+    "start_time": "12:45:00",
+    "end_time": "13:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 75,
+  "fields": {
+    "availability": 4,
+    "start_time": "13:00:00",
+    "end_time": "13:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 76,
+  "fields": {
+    "availability": 4,
+    "start_time": "13:15:00",
+    "end_time": "13:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 77,
+  "fields": {
+    "availability": 4,
+    "start_time": "13:30:00",
+    "end_time": "13:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 78,
+  "fields": {
+    "availability": 4,
+    "start_time": "13:45:00",
+    "end_time": "14:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 79,
+  "fields": {
+    "availability": 4,
+    "start_time": "14:00:00",
+    "end_time": "14:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 80,
+  "fields": {
+    "availability": 4,
+    "start_time": "14:15:00",
+    "end_time": "14:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 81,
+  "fields": {
+    "availability": 4,
+    "start_time": "14:30:00",
+    "end_time": "14:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 82,
+  "fields": {
+    "availability": 4,
+    "start_time": "14:45:00",
+    "end_time": "15:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 83,
+  "fields": {
+    "availability": 4,
+    "start_time": "15:00:00",
+    "end_time": "15:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 84,
+  "fields": {
+    "availability": 4,
+    "start_time": "15:15:00",
+    "end_time": "15:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 85,
+  "fields": {
+    "availability": 4,
+    "start_time": "15:30:00",
+    "end_time": "15:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 86,
+  "fields": {
+    "availability": 4,
+    "start_time": "15:45:00",
+    "end_time": "16:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 87,
+  "fields": {
+    "availability": 4,
+    "start_time": "16:00:00",
+    "end_time": "16:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 88,
+  "fields": {
+    "availability": 4,
+    "start_time": "16:15:00",
+    "end_time": "16:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 89,
+  "fields": {
+    "availability": 4,
+    "start_time": "16:30:00",
+    "end_time": "16:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 90,
+  "fields": {
+    "availability": 4,
+    "start_time": "16:45:00",
+    "end_time": "17:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 91,
+  "fields": {
+    "availability": 4,
+    "start_time": "17:00:00",
+    "end_time": "17:15:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 92,
+  "fields": {
+    "availability": 4,
+    "start_time": "17:15:00",
+    "end_time": "17:30:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 93,
+  "fields": {
+    "availability": 4,
+    "start_time": "17:30:00",
+    "end_time": "17:45:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "clinic.timeslot",
+  "pk": 94,
+  "fields": {
+    "availability": 4,
+    "start_time": "17:45:00",
+    "end_time": "18:00:00",
+    "is_booked": false
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 1,
+  "fields": {
+    "patient": 2,
+    "slot": 1,
+    "name": "Adi",
+    "age": 22,
+    "sex": "M",
+    "created_at": "2026-01-16T10:29:33.717Z"
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 2,
+  "fields": {
+    "patient": 2,
+    "slot": 17,
+    "name": "Adi",
+    "age": 22,
+    "sex": "M",
+    "created_at": "2026-02-07T05:16:48.766Z"
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 3,
+  "fields": {
+    "patient": 4,
+    "slot": 18,
+    "name": "Adidev",
+    "age": 22,
+    "sex": "M",
+    "created_at": "2026-02-07T05:25:36.275Z"
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 4,
+  "fields": {
+    "patient": 5,
+    "slot": 8,
+    "name": "Patient",
+    "age": 30,
+    "sex": "M",
+    "created_at": "2026-02-07T06:37:05.196Z"
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 5,
+  "fields": {
+    "patient": 2,
+    "slot": 21,
+    "name": "Patient",
+    "age": 30,
+    "sex": "M",
+    "created_at": "2026-02-07T06:42:47.092Z"
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 6,
+  "fields": {
+    "patient": 2,
+    "slot": 22,
+    "name": "Patient",
+    "age": 30,
+    "sex": "M",
+    "created_at": "2026-02-07T06:49:22.870Z"
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 7,
+  "fields": {
+    "patient": 6,
+    "slot": 42,
+    "name": "Patient",
+    "age": 30,
+    "sex": "M",
+    "created_at": "2026-02-07T06:55:03.514Z"
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 8,
+  "fields": {
+    "patient": 7,
+    "slot": 57,
+    "name": "test1",
+    "age": 23,
+    "sex": "Female",
+    "created_at": "2026-03-28T17:57:19.608Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 1,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "350947",
+    "is_verified": false,
+    "created_at": "2026-01-16T09:59:28.192Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 2,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "853433",
+    "is_verified": false,
+    "created_at": "2026-01-16T10:00:04.052Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 3,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "137337",
+    "is_verified": false,
+    "created_at": "2026-01-16T10:00:09.314Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 4,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "330648",
+    "is_verified": true,
+    "created_at": "2026-01-16T10:28:56.380Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 5,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "415476",
+    "is_verified": true,
+    "created_at": "2026-02-05T17:13:23.988Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 6,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "411878",
+    "is_verified": true,
+    "created_at": "2026-02-05T17:15:09.159Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 7,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "446836",
+    "is_verified": true,
+    "created_at": "2026-02-07T05:03:49.514Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 8,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "571368",
+    "is_verified": true,
+    "created_at": "2026-02-07T05:08:02.091Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 9,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "160680",
+    "is_verified": true,
+    "created_at": "2026-02-07T05:10:34.394Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 10,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "327750",
+    "is_verified": true,
+    "created_at": "2026-02-07T05:12:17.673Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 11,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "282691",
+    "is_verified": true,
+    "created_at": "2026-02-07T05:14:22.840Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 12,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "847321",
+    "is_verified": true,
+    "created_at": "2026-02-07T05:16:33.279Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 13,
+  "fields": {
+    "phone_number": "8999999999",
+    "otp": "781333",
+    "is_verified": true,
+    "created_at": "2026-02-07T05:17:05.943Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 14,
+  "fields": {
+    "phone_number": "7899999999",
+    "otp": "420828",
+    "is_verified": true,
+    "created_at": "2026-02-07T05:25:18.716Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 15,
+  "fields": {
+    "phone_number": "11111111111",
+    "otp": "927029",
+    "is_verified": true,
+    "created_at": "2026-02-07T06:36:39.077Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 16,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "303148",
+    "is_verified": true,
+    "created_at": "2026-02-07T06:42:36.323Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 17,
+  "fields": {
+    "phone_number": "9999999999",
+    "otp": "155053",
+    "is_verified": true,
+    "created_at": "2026-02-07T06:49:09.478Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 18,
+  "fields": {
+    "phone_number": "9810797357",
+    "otp": "861947",
+    "is_verified": true,
+    "created_at": "2026-02-07T06:54:43.614Z"
+  }
+},
+{
+  "model": "appointments.otpverification",
+  "pk": 19,
+  "fields": {
+    "phone_number": "9876543210",
+    "otp": "545772",
+    "is_verified": true,
+    "created_at": "2026-03-28T17:57:11.066Z"
+  }
+}
+]
