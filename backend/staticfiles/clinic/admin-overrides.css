@@ -1,0 +1,107 @@
+:root {
+  --clinic-ink: #102c3c;
+  --clinic-surface: #eff7f4;
+  --clinic-brand: #0f766e;
+  --clinic-brand-deep: #164e63;
+  --clinic-accent: #f59e0b;
+}
+
+#header {
+  background: linear-gradient(135deg, var(--clinic-brand), var(--clinic-brand-deep));
+  color: #f8fafc;
+  box-shadow: 0 18px 40px rgba(15, 118, 110, 0.18);
+}
+
+#branding {
+  float: none;
+}
+
+.brand-lockup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.brand-lockup__title {
+  color: #f8fafc;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.brand-lockup__meta {
+  margin: 0;
+  color: rgba(248, 250, 252, 0.82);
+  font-size: 0.88rem;
+}
+
+div.breadcrumbs {
+  background: var(--clinic-surface);
+  color: var(--clinic-ink);
+  border-bottom: 1px solid rgba(16, 44, 60, 0.08);
+}
+
+div.breadcrumbs a {
+  color: var(--clinic-brand-deep);
+}
+
+#content {
+  max-width: 1440px;
+}
+
+.dashboard .module,
+.module,
+#changelist .actions,
+.submit-row {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px rgba(16, 44, 60, 0.08);
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.92), rgba(22, 78, 99, 0.92));
+  color: #f8fafc;
+  border: 0;
+}
+
+#changelist table thead th {
+  background: rgba(15, 118, 110, 0.08);
+}
+
+a:link,
+a:visited {
+  color: var(--clinic-brand-deep);
+}
+
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+a.button {
+  border-radius: 999px;
+}
+
+.button.default,
+input[type="submit"].default,
+.submit-row input.default {
+  background: var(--clinic-accent);
+  border-color: var(--clinic-accent);
+  color: #102c3c;
+  font-weight: 700;
+}
+
+.button.default:hover,
+input[type="submit"].default:hover,
+.submit-row input.default:hover {
+  background: #fbbf24;
+  border-color: #fbbf24;
+}
+
+@media (max-width: 767px) {
+  .brand-lockup__meta {
+    display: none;
+  }
+}
