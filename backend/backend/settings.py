@@ -4,6 +4,15 @@ from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+def config_first(keys, default=""):
+    for key in keys:
+        value = config(key, default=None)
+        if value not in (None, ""):
+            return str(value).strip().strip('"').strip("'")
+    return default
+
+
 # ENV
 ENV = config('ENV', default='production')
 
@@ -126,6 +135,16 @@ DATABASES = {
 
 # AUTH
 AUTH_USER_MODEL = 'accounts.User'
+
+# DOCTOR ACCESS
+DOCTOR_ACCESS_USERNAME = config_first(
+    ["DOCTOR_ACCESS_USERNAME", "username"],
+    default="",
+)
+DOCTOR_ACCESS_PASSWORD = config_first(
+    ["DOCTOR_ACCESS_PASSWORD", "password"],
+    default="",
+)
 
 # TIME
 LANGUAGE_CODE = 'en-us'
