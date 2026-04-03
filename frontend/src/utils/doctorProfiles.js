@@ -1,5 +1,5 @@
 const doctorProfile = {
-  name: "Dr. Deepti Sinha",
+  name: "Dr. Deepti ENT Delhi",
   initials: "DS",
   credentials: "MBBS, DNB (ENT)",
   headline:
@@ -10,7 +10,7 @@ const doctorProfile = {
   currentPracticeShort: "CK Birla Hospital, Punjabi Bagh",
   previousPractice: "Senior ENT Consultant at Max Healthcare, Delhi",
   location: "Delhi, India",
-  email: "drdeeptisinha@gmail.com",
+  email: "drdeeptientclinic@gmail.com",
   tagline: "Breathe Better, Live Better",
   summary:
     "Senior ENT Consultant with 25 years of experience in medical practice, with proven expertise in comprehensive ENT diagnosis and treatment.",
