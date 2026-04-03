@@ -17,10 +17,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             set -e
-            sudo systemctl restart nginx
+
             cd /home/deploy/app
 
-            git pull origin Main
+            git pull origin main
 
             source venv/bin/activate
 
@@ -31,3 +31,4 @@ jobs:
             python manage.py collectstatic --noinput
 
             sudo systemctl restart gunicorn
+            sudo systemctl restart nginx
