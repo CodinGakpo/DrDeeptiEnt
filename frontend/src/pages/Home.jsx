@@ -97,7 +97,7 @@ export default function Home() {
               Book an appointment
             </Link>
             <Link
-              className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(138,102,72,0.26)] bg-[var(--color-paper-soft)] px-6 py-3 text-sm font-semibold text-[var(--color-wood-deep)] transition hover:bg-[var(--color-wood-soft)] sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(45,124,119,0.18)] bg-white px-6 py-3 text-sm font-semibold text-[var(--color-cyan-deep)] shadow-[0_14px_28px_rgba(36,53,51,0.08)] transition hover:border-[rgba(45,124,119,0.28)] hover:bg-[var(--color-cyan-soft)] sm:w-auto"
               to={doctor.id ? `/doctors/${doctor.id}` : "/doctors/1"}
             >
               View doctor profile
@@ -191,10 +191,10 @@ export default function Home() {
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link
-              className="inline-flex w-full items-center justify-center rounded-full bg-[var(--color-cyan-deep)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-cyan)] sm:w-auto"
-              to={doctor.appointmentLink}
+              className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(45,124,119,0.18)] bg-white px-6 py-3 text-sm font-semibold text-[var(--color-cyan-deep)] shadow-[0_14px_28px_rgba(36,53,51,0.08)] transition hover:border-[rgba(45,124,119,0.28)] hover:bg-[var(--color-cyan-soft)] sm:w-auto"
+              to={doctor.id ? `/doctors/${doctor.id}` : "/doctors/1"}
             >
-              Book with Dr. Deepti Sinha
+              View doctor profile
             </Link>
             <a
               className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(138,102,72,0.26)] bg-[var(--color-paper-soft)] px-6 py-3 text-sm font-semibold text-[var(--color-wood-deep)] transition hover:bg-[var(--color-wood-soft)] sm:w-auto"
@@ -390,9 +390,9 @@ export default function Home() {
           </div>
           <Link
             className="text-sm font-semibold text-[var(--color-cyan-deep)] transition hover:text-[var(--color-wood-deep)]"
-            to={doctor.appointmentLink}
+            to="/recognition"
           >
-            Book a consultation
+            Explore recognition
           </Link>
         </div>
 
@@ -479,19 +479,19 @@ export default function Home() {
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-mist)]">
               The experience now reads like a professional hospital microsite on mobile first,
-              while still keeping the booking pipeline direct and easy for patients.
+              while keeping the booking path clear once the patient feels confident to proceed.
             </p>
           </div>
 
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <Link
-              className="inline-flex w-full items-center justify-center rounded-full bg-[var(--color-cyan-deep)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-cyan)] sm:w-auto"
-              to={doctor.appointmentLink}
+              className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(45,124,119,0.18)] bg-white px-6 py-3 text-sm font-semibold text-[var(--color-cyan-deep)] shadow-[0_14px_28px_rgba(36,53,51,0.08)] transition hover:border-[rgba(45,124,119,0.28)] hover:bg-[var(--color-cyan-soft)] sm:w-auto"
+              to="/recognition"
             >
-              Book appointment
+              See recognition gallery
             </Link>
             <Link
-              className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(138,102,72,0.26)] bg-white px-6 py-3 text-sm font-semibold text-[var(--color-wood-deep)] transition hover:bg-[var(--color-wood-soft)] sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(45,124,119,0.18)] bg-white px-6 py-3 text-sm font-semibold text-[var(--color-cyan-deep)] shadow-[0_14px_28px_rgba(36,53,51,0.08)] transition hover:border-[rgba(45,124,119,0.28)] hover:bg-[var(--color-cyan-soft)] sm:w-auto"
               to={doctor.id ? `/doctors/${doctor.id}` : "/doctors/1"}
             >
               View full doctor profile

@@ -1,17 +1,42 @@
-export async function apiFetch(path, options = {}) {
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+function resolveApiBaseUrl() {
+  const configuredBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
 
-  if (!baseUrl) {
-    throw new Error("VITE_API_BASE_URL is not defined");
+  if (configuredBaseUrl) {
+    return configuredBaseUrl.replace(/\/$/, "");
   }
 
-  const response = await fetch(`${baseUrl}${path}`, {
-    credentials: "include", // future-proof for session auth
-    headers: {
-      "Content-Type": "application/json",
-    },
-    ...options,
-  });
+  if (typeof window !== "undefined") {
+    const { hostname } = window.location;
+
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return "http://127.0.0.1:8000/api";
+    }
+  }
+
+  return "https://api.drdeeptientdelhi.in/api";
+}
+
+export async function apiFetch(path, options = {}) {
+  const baseUrl = resolveApiBaseUrl();
+  const url = `${baseUrl}${path}`;
+  const requestHeaders = {
+    "Content-Type": "application/json",
+    ...(options.headers || {}),
+  };
+
+  let response;
+
+  try {
+    response = await fetch(url, {
+      credentials: "include",
+      ...options,
+      headers: requestHeaders,
+    });
+  } catch {
+    throw {
+      error: "Could not reach the clinic server. Please try again in a moment.",
+    };
+  }
 
   const contentType = response.headers.get("content-type") || "";
   const data = contentType.includes("application/json")

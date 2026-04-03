@@ -9,7 +9,7 @@ const navLinkClass = ({ isActive }) =>
 
 export default function App() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-(--color-bg) text-(--color-ink)">
+    <div className="relative min-h-screen overflow-hidden bg-[var(--color-bg)] text-[var(--color-ink)]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(118,183,177,0.16),transparent_34%),radial-gradient(circle_at_84%_10%,rgba(138,102,72,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.5),transparent_26%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[18rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.62),transparent)]" />
 
@@ -25,16 +25,9 @@ export default function App() {
                   Dr. Deepti Sinha
                 </p>
               </NavLink>
-
-              <NavLink
-                className="shrink-0 rounded-full bg-[var(--color-cyan-deep)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--color-cyan)]"
-                to="/book"
-              >
-                Book visit
-              </NavLink>
             </div>
 
-            <nav className="no-scrollbar mt-4 flex gap-2 overflow-x-auto pb-1">
+            <nav className="no-scrollbar mt-4 flex gap-2 overflow-x-auto rounded-[1.5rem] border border-[rgba(97,115,111,0.14)] bg-[rgba(255,255,255,0.72)] px-1.5 py-1.5 shadow-[0_14px_30px_rgba(36,53,51,0.08)]">
               <NavLink className={navLinkClass} end to="/">
                 Home
               </NavLink>

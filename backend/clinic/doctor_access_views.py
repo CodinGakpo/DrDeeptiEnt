@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 
 from appointments.models import Appointment
 from .models import AvailabilitySlot, DoctorProfile, TimeSlot
+from .schedule_utils import ensure_future_availability_for_doctor
 from .serializers import (
     DoctorAccessAppointmentSerializer,
     DoctorAccessAvailabilityCreateSerializer,
@@ -115,6 +116,8 @@ class DoctorAccessAvailabilityView(APIView):
                 status=status.HTTP_403_FORBIDDEN,
             )
 
+        ensure_future_availability_for_doctor(doctor)
+
         queryset = (
             AvailabilitySlot.objects.filter(doctor=doctor)
             .prefetch_related(
@@ -142,6 +145,7 @@ class DoctorAccessAvailabilityView(APIView):
         serializer = DoctorAccessAvailabilityCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         availability = serializer.save(doctor=doctor)
+        ensure_future_availability_for_doctor(doctor, template_date=availability.date)
 
         return Response(
             {
