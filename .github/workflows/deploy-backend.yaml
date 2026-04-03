@@ -19,7 +19,7 @@ jobs:
           script: |
             cd /home/deploy/app
 
-            git pull origin main
+            git pull origin Main
 
             source venv/bin/activate
 
