@@ -145,7 +145,7 @@ class DoctorAccessAvailabilityView(APIView):
         serializer = DoctorAccessAvailabilityCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         availability = serializer.save(doctor=doctor)
-        ensure_future_availability_for_doctor(doctor, template_date=availability.date)
+        ensure_future_availability_for_doctor(doctor)
 
         return Response(
             {

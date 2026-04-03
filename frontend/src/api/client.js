@@ -1,8 +1,12 @@
 function resolveApiBaseUrl() {
-  const configuredBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+  const configuredBaseUrl =
+    import.meta.env.VITE_API_BASE_URL?.trim() || import.meta.env.VITE_API_URL?.trim();
 
   if (configuredBaseUrl) {
-    return configuredBaseUrl.replace(/\/$/, "");
+    const sanitizedBaseUrl = configuredBaseUrl.replace(/\/$/, "");
+    return sanitizedBaseUrl.endsWith("/api")
+      ? sanitizedBaseUrl
+      : `${sanitizedBaseUrl}/api`;
   }
 
   if (typeof window !== "undefined") {
