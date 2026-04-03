@@ -43,7 +43,9 @@ def load_local_env(env_path):
 
 
 LOCAL_ENV = load_local_env(BASE_DIR / ".env")
-
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
