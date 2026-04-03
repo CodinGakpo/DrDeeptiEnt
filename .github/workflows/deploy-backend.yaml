@@ -17,6 +17,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             set -e
+            sudo systemctl restart nginx
             cd /home/deploy/app
 
             git pull origin Main
