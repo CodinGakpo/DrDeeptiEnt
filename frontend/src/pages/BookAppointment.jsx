@@ -116,6 +116,12 @@ export default function BookAppointment() {
       .catch(() => {});
   }, [loadDoctors, preferredDoctorId]);
 
+  useEffect(() => {
+    if (selectedDoctorId && step === 1) {
+      setStep(2);
+    }
+  }, [selectedDoctorId, step]);
+
   const selectedDoctor = doctors.find((doctor) => doctor.id === selectedDoctorId);
   const selectedDoctorProfile = selectedDoctor
     ? getDoctorProfileContent(selectedDoctor)
@@ -135,6 +141,12 @@ export default function BookAppointment() {
 
   function jumpBack(targetStep) {
     if (targetStep < step) {
+      if (targetStep === 1) {
+        setSelectedDoctorId(null);
+        setSelectedDate("");
+        setSelectedSlotId(null);
+        resetSlots();
+      }
       setStep(targetStep);
       setActionError("");
     }
@@ -425,6 +437,21 @@ export default function BookAppointment() {
                 selectedDoctorId={selectedDoctorId}
               />
             )}
+
+            {selectedDoctorProfile ? (
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button className="w-full sm:w-auto" onClick={() => setStep(2)}>
+                  Continue to date selection
+                </Button>
+                <Button
+                  className="w-full sm:w-auto"
+                  onClick={() => setSelectedDoctorId(null)}
+                  variant="ghost"
+                >
+                  Choose a different doctor
+                </Button>
+              </div>
+            ) : null}
           </div>
         ) : null}
 

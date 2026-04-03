@@ -192,6 +192,62 @@ class DoctorAccessAvailabilityDetailView(APIView):
             }
         )
 
+    def delete(self, request, availability_id):
+        doctor = get_authenticated_doctor(request)
+
+        if doctor is None:
+            return Response(
+                {"error": "Authentication required."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        try:
+            availability = AvailabilitySlot.objects.prefetch_related("time_slots").get(
+                id=availability_id,
+                doctor=doctor,
+            )
+        except AvailabilitySlot.DoesNotExist:
+            return Response(
+                {"error": "Availability slot not found."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        if availability.date < timezone.localdate():
+            return Response(
+                {"error": "Past schedule entries cannot be removed from doctor access."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if availability.time_slots.filter(is_booked=True).exists():
+            return Response(
+                {
+                    "error": (
+                        "This schedule entry has booked appointments and cannot be reset here."
+                    )
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        target_date = availability.date
+        availability.delete()
+        ensure_future_availability_for_doctor(doctor)
+
+        refreshed_entries = AvailabilitySlot.objects.filter(
+            doctor=doctor,
+            date=target_date,
+        ).order_by("start_time")
+
+        return Response(
+            {
+                "message": "Schedule entry removed. The default clinic timing has been restored where applicable.",
+                "date": target_date,
+                "availability": DoctorAccessAvailabilitySerializer(
+                    refreshed_entries,
+                    many=True,
+                ).data,
+            }
+        )
+
 
 class DoctorAccessAppointmentView(APIView):
     authentication_classes = []

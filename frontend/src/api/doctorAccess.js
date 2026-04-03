@@ -31,3 +31,8 @@ export const updateDoctorAvailability = (availabilityId, payload) =>
     method: "PATCH",
     body: JSON.stringify(payload),
   });
+
+export const deleteDoctorAvailability = (availabilityId) =>
+  apiFetch(`/clinic/doctor-access/availability/${availabilityId}/`, {
+    method: "DELETE",
+  });

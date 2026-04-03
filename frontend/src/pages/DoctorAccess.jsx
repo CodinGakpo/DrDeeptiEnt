@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import Button from "../components/Button";
 import {
   createDoctorAvailability,
+  deleteDoctorAvailability,
   getDoctorAccessSession,
   getDoctorAppointments,
   getDoctorAvailability,
@@ -244,6 +245,26 @@ export default function DoctorAccess() {
     } catch (requestError) {
       setError(
         getApiErrorMessage(requestError, "We could not update the slot status."),
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function handleResetAvailability(item) {
+    setSubmitting(true);
+    setError("");
+    setStatusMessage("");
+
+    try {
+      const response = await deleteDoctorAvailability(item.id);
+      setStatusMessage(
+        response.message || "Schedule entry removed and default timing restored.",
+      );
+      await loadAvailability();
+    } catch (requestError) {
+      setError(
+        getApiErrorMessage(requestError, "We could not reset that schedule entry."),
       );
     } finally {
       setSubmitting(false);
@@ -616,8 +637,30 @@ export default function DoctorAccess() {
                               >
                                 Set {item.is_active ? "inactive" : "active"}
                               </Button>
+
+                              <Button
+                                className="md:w-auto"
+                                disabled={submitting || item.booked_slot_count > 0}
+                                onClick={() => handleResetAvailability(item)}
+                                size="sm"
+                                variant="ghost"
+                              >
+                                Reset to default
+                              </Button>
                             </div>
                           </div>
+
+                          {item.booked_slot_count > 0 ? (
+                            <p className="mt-3 text-xs leading-6 text-[var(--color-mist)]">
+                              This entry has booked appointments, so it cannot be reset from doctor
+                              access.
+                            </p>
+                          ) : (
+                            <p className="mt-3 text-xs leading-6 text-[var(--color-mist)]">
+                              Reset removes this row and restores the clinic default timing for that
+                              date when applicable.
+                            </p>
+                          )}
                         </article>
                       ))
                     ) : (
