@@ -36,6 +36,45 @@ function GalleryCard({ item, tone = "paper" }) {
   );
 }
 
+function MarqueeRow({ items, title, tone = "soft", reverse = false }) {
+  const toneClass =
+    tone === "warm"
+      ? "bg-[linear-gradient(145deg,#fffdf9,#f8f2ea)]"
+      : "bg-[linear-gradient(145deg,#eef7f5,#ffffff)]";
+
+  const loopItems = [...items, ...items];
+
+  return (
+    <div className="space-y-3">
+      <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--color-wood)]">{title}</p>
+      <div className="overflow-hidden rounded-[24px] border border-[var(--color-line)] bg-white/70 p-3">
+        <div
+          className={`recognition-marquee-track flex gap-3 ${reverse ? "recognition-marquee-track-reverse" : ""}`}
+        >
+          {loopItems.map((item, index) => (
+            <article
+              key={`${item.src}-${index}`}
+              className={`w-[260px] shrink-0 rounded-[18px] border border-[var(--color-line)] p-2 shadow-[0_14px_30px_rgba(36,53,51,0.05)] ${toneClass}`}
+            >
+              <div className="overflow-hidden rounded-[14px] border border-[var(--color-line)] bg-white">
+                <img
+                  alt={item.title}
+                  className={`h-[140px] w-full ${item.fit === "contain" ? "object-contain bg-[var(--color-paper-soft)] p-2" : "object-cover object-center"}`}
+                  loading="lazy"
+                  src={item.src}
+                />
+              </div>
+              <p className="mt-3 line-clamp-2 text-xs font-semibold leading-5 text-[var(--color-ink)]">
+                {item.title}
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Recognition() {
   return (
     <div className="space-y-6 py-4 sm:space-y-8 sm:py-6 lg:py-8">
@@ -93,6 +132,22 @@ export default function Recognition() {
       </section>
 
       <section className="space-y-4">
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--color-wood)]">
+            Highlights in motion
+          </p>
+          <h2 className="mt-2 font-serif text-3xl text-[var(--color-ink)]">
+            Conference and award moments.
+          </h2>
+        </div>
+
+        <div className="space-y-4">
+          <MarqueeRow items={conferences} title="Conferences" tone="soft" />
+          <MarqueeRow items={awards} reverse title="Awards" tone="warm" />
+        </div>
+      </section>
+
+      <section className="space-y-4">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--color-wood)]">
@@ -111,40 +166,6 @@ export default function Recognition() {
         <div className="grid gap-4 lg:grid-cols-3">
           {testimonials.map((item) => (
             <GalleryCard key={item.src} item={item} tone="paper" />
-          ))}
-        </div>
-      </section>
-
-      <section className="space-y-4">
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--color-wood)]">
-            Conferences
-          </p>
-          <h2 className="mt-2 font-serif text-3xl text-[var(--color-ink)]">
-            Recognised forums, academic presence, and specialty visibility.
-          </h2>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {conferences.map((item) => (
-            <GalleryCard key={item.src} item={item} tone="soft" />
-          ))}
-        </div>
-      </section>
-
-      <section className="space-y-4">
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--color-wood)]">
-            Awards
-          </p>
-          <h2 className="mt-2 font-serif text-3xl text-[var(--color-ink)]">
-            Accolades that reflect trust, skill, and professional respect.
-          </h2>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {awards.map((item) => (
-            <GalleryCard key={item.src} item={item} tone="warm" />
           ))}
         </div>
       </section>
