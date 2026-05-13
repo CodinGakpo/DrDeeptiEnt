@@ -27,9 +27,7 @@ export default function SlotGrid({ onSelect, selectedSlotId, slots }) {
             <h3 className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-wood)] sm:text-sm">
               {groupName}
             </h3>
-            <span className="text-xs text-[var(--color-mist)]">
-              {groups[groupName].length} slots
-            </span>
+            <span className="text-xs text-[var(--color-mist)]">Booking available</span>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

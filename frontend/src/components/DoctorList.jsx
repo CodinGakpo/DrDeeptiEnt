@@ -88,9 +88,7 @@ export default function DoctorList({ doctors, onSelect, selectedDoctorId }) {
                     View full profile
                   </Link>
 
-                  <span className="text-sm text-[var(--color-mist)]">
-                    {profile.open_slot_count} open future slots
-                  </span>
+                  <span className="text-sm text-[var(--color-mist)]">Booking available</span>
                 </div>
               </div>
             </div>

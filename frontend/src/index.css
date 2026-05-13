@@ -105,3 +105,22 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+@keyframes recognition-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.recognition-marquee-track {
+  width: max-content;
+  animation: recognition-marquee 34s linear infinite;
+  will-change: transform;
+}
+
+.recognition-marquee-track-reverse {
+  animation-direction: reverse;
+}

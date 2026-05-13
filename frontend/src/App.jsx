@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { FaWhatsapp } from "react-icons/fa";
 
 const navLinkClass = ({ isActive }) =>
   `shrink-0 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition ${
@@ -8,6 +9,11 @@ const navLinkClass = ({ isActive }) =>
   }`;
 
 export default function App() {
+  const whatsappMessage = encodeURIComponent(
+    "Hi, I would like to enquire about an appointment",
+  );
+  const whatsappLink = `https://wa.me/919818630069?text=${whatsappMessage}`;
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-[var(--color-bg)] text-[var(--color-ink)]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(118,183,177,0.16),transparent_34%),radial-gradient(circle_at_84%_10%,rgba(138,102,72,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.5),transparent_26%)]" />
@@ -67,6 +73,16 @@ export default function App() {
           </div>
         </footer>
       </div>
+
+      <a
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] p-2 text-white shadow-[0_16px_32px_rgba(36,53,51,0.24)] transition hover:scale-105"
+        href={whatsappLink}
+        rel="noreferrer"
+        target="_blank"
+      >
+        <FaWhatsapp aria-hidden="true" className="h-8 w-8" />
+      </a>
     </div>
   );
 }
