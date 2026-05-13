@@ -16,6 +16,25 @@ const treatmentHighlights = [
   "General ENT surgery",
 ];
 
+function getNextWeekdayDates(startDate, count = 3) {
+  if (!startDate) {
+    return [];
+  }
+
+  const results = [];
+  const cursor = new Date(`${startDate}T00:00:00`);
+
+  while (results.length < count) {
+    const day = cursor.getDay();
+    if (day >= 1 && day <= 5) {
+      results.push(cursor.toISOString().split("T")[0]);
+    }
+    cursor.setDate(cursor.getDate() + 1);
+  }
+
+  return results;
+}
+
 export default function Home() {
   const { doctors, error, loadDoctors, loadingDoctors } = useBooking();
 
@@ -28,6 +47,7 @@ export default function Home() {
   const supportingAdvice = doctor.publicAdvice.slice(1);
   const featuredTimeline = doctor.timeline.slice(0, 3);
   const featuredSkills = doctor.skills.slice(0, 4);
+  const nextPublishedDates = getNextWeekdayDates(doctor.next_available_date, 3);
 
   return (
     <div className="space-y-6 py-4 sm:space-y-8 sm:py-6 lg:py-8">
@@ -142,18 +162,42 @@ export default function Home() {
             <h2 className="mt-3 text-2xl font-semibold text-[var(--color-ink)]">
               Monday to Friday by Appointment Only
             </h2>
-           
 
             <div className="mt-5 rounded-[22px] border border-[var(--color-line)] bg-[var(--color-paper)] p-4">
-              <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--color-cyan-deep)]">
-                Next published slot
-              </p>
-              <p className="mt-2 text-lg font-semibold text-[var(--color-ink)] sm:text-xl">
-                {loadingDoctors
-                  ? "Syncing schedule..."
-                  : formatShortDate(doctor.next_available_date)}
-              </p>
-              
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--color-cyan-deep)]">
+                  Next published slots
+                </p>
+                <span className="rounded-full bg-[var(--color-cyan-soft)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-cyan-deep)]">
+                  Booking available
+                </span>
+              </div>
+
+              {loadingDoctors ? (
+                <p className="mt-3 text-base font-semibold text-[var(--color-ink)] sm:text-lg">
+                  Syncing schedule...
+                </p>
+              ) : nextPublishedDates.length ? (
+                <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                  {nextPublishedDates.map((dateValue) => (
+                    <div
+                      key={dateValue}
+                      className="rounded-[14px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] px-3 py-2 text-center"
+                    >
+                      <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-wood)]">
+                        Slot
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-[var(--color-ink)] sm:text-base">
+                        {formatShortDate(dateValue)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-3 text-base font-semibold text-[var(--color-ink)] sm:text-lg">
+                  Booking available
+                </p>
+              )}
             </div>
           </div>
 
