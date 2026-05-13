@@ -1,7 +1,11 @@
 from .base import *
 
 DEBUG = False
-ALLOWED_HOSTS = ALLOWED_HOSTS or ["drdeeptientdelhi.in", "www.drdeeptientdelhi.in", ".onrender.com"]
+if not ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ["drdeeptientdelhi.in", "www.drdeeptientdelhi.in"]
+
+if ".onrender.com" not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(".onrender.com")
 
 # Insert WhiteNoise right after SecurityMiddleware (which is at index 1 in base.py)
 MIDDLEWARE.insert(2, "whitenoise.middleware.WhiteNoiseMiddleware")

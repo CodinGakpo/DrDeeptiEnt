@@ -130,12 +130,9 @@ export default function Home() {
               Current availability
             </p>
             <h2 className="mt-3 text-2xl font-semibold text-[var(--color-ink)]">
-              Calm booking from a single specialist profile
+              Monday to Friday by Appointment Only
             </h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--color-mist)]">
-              Patients can review the doctor, understand the clinic focus, and then choose a time
-              without navigating a crowded multi-doctor portal.
-            </p>
+           
 
             <div className="mt-5 rounded-[22px] border border-[var(--color-line)] bg-[var(--color-paper)] p-4">
               <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--color-cyan-deep)]">
@@ -146,9 +143,7 @@ export default function Home() {
                   ? "Syncing schedule..."
                   : formatShortDate(doctor.next_available_date)}
               </p>
-              <p className="mt-2 text-sm leading-6 text-[var(--color-mist)]">
-                {doctor.open_slot_count} open future slots currently visible in the booking flow.
-              </p>
+              
             </div>
           </div>
 
@@ -176,7 +171,7 @@ export default function Home() {
             Why patients book
           </p>
           <h2 className="mt-3 font-serif text-3xl text-[var(--color-ink)]">
-            Breathing, sinus, allergy, ear, and vertigo concerns handled with specialist-led care.
+            Breathing, sinus, allergy, ear, and vertigo concerns handled with expertise.
           </h2>
           <ul className="mt-5 space-y-3">
             {doctor.whyBookNow.slice(0, 4).map((item) => (

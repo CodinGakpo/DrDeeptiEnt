@@ -84,19 +84,24 @@ MIDDLEWARE = [
 ]
 
 # CORS
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "https://drdeeptientdelhi.in",
-    "https://www.drdeeptientdelhi.in",
-]
+CORS_ALLOWED_ORIGINS = env(
+    "CORS_ALLOWED_ORIGINS",
+    default="http://localhost:5173,https://drdeeptientdelhi.in,https://www.drdeeptientdelhi.in",
+    cast=list,
+)
+CORS_ALLOWED_ORIGIN_REGEXES = env(
+    "CORS_ALLOWED_ORIGIN_REGEXES",
+    default=r"^https:\/\/.*\.vercel\.app$",
+    cast=list,
+)
 CORS_ALLOW_CREDENTIALS = True
 
 # CSRF
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "https://drdeeptientdelhi.in",
-    "https://www.drdeeptientdelhi.in",
-]
+CSRF_TRUSTED_ORIGINS = env(
+    "CSRF_TRUSTED_ORIGINS",
+    default="http://localhost:5173,https://drdeeptientdelhi.in,https://www.drdeeptientdelhi.in",
+    cast=list,
+)
 
 # URLS
 ROOT_URLCONF = "backend.urls"

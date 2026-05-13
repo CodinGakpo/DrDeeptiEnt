@@ -1,30 +1,32 @@
 const doctorProfile = {
-  name: "Dr. Deepti ENT Delhi",
+  name: "Dr. Deepti Sinha",
   initials: "DS",
   credentials: "MBBS, DNB (ENT)",
   headline:
     "Indian Society of Otology Foreign Travel Fellow, Otolaryngologist, Endoscopic Sinus Surgeon, Speaker",
   professionalTitle: "Lead Consultant ENT Surgeon",
-  specialtyLine: "ENT, Otology, Nose and Sinus Care",
+  specialtyLine: "ENT, Ear, Nose and Sinus Care",
   currentPractice: "CK Birla Hospital, Punjabi Bagh, New Delhi",
   currentPracticeShort: "CK Birla Hospital, Punjabi Bagh",
-  previousPractice: "Senior ENT Consultant at Max Healthcare, Delhi",
+  previousPractice: "Senior ENT Consultant at Max Healthcare, Delhi for 17 years",
   location: "Delhi, India",
   email: "drdeeptientclinic@gmail.com",
   tagline: "Breathe Better, Live Better",
   summary:
-    "Senior ENT Consultant with 25 years of experience in medical practice, with proven expertise in comprehensive ENT diagnosis and treatment.",
+    "Senior ENT Consultant with 25 years of experience, with proven expertise in comprehensive ENT diagnosis and treatment.",
   mission:
-    "I help people suffering from nasal blockage, rhinosinusitis, and allergies, with strong experience in both medical and surgical treatment of nose and sinus disorders.",
+    "I help people suffering from nasal blockage, rhinosinusitis, and other ear,nose and throat problems. I have vast experience in medical and surgical treatment of ear, nose, sinuses,throat disorders.",
   careStyle:
-    "Evidence-based ENT care with a special interest in endoscopic sinus surgery, vertigo diagnosis and management, and thoughtful long-term treatment planning.",
+    "Evidence-based ENT care with a special interest in Endoscopic Sinus surgery, Vertigo diagnosis and management.",
   bookingReasons: [
     "Persistent nasal blockage, recurrent sinus issues, or allergy symptoms affecting daily comfort",
-    "Ear pain, discharge, hearing loss, tinnitus, or a sense of blocked ears",
+    "Ear pain, discharge, hearing loss, tinnitus,ear noises or a sense of blocked ears",
     "Dizziness, vertigo, or balance-related symptoms that need ENT evaluation",
+    "Throat problems,Thyroid swelling,parotid swelling,swallowing difficulty ,voice problems",
+    "headache,neck pain,facial pain"
   ],
   whyBookNow: [
-    "Early diagnosis can simplify treatment and prevent complications.",
+    "Early diagnosis means early treatment and prevention of complications.",
     "Structured hospital-based ENT care helps patients move from symptoms to treatment clearly.",
     "The clinic flow is designed for direct booking with one specialist instead of a confusing directory.",
   ],
@@ -34,18 +36,20 @@ const doctorProfile = {
     "Endoscopic sinus surgery",
     "Vertigo diagnosis and management",
     "General ENT surgery",
-    "Hearing evaluation and ear care",
+    "Hearing evaluation of Children",
+    "Microscopic Ear Surgery",
+    "Microlaryngeal surgery, voice surgery",
   ],
   expectations: [
-    "Bring previous prescriptions, scans, and hearing reports if available.",
-    "Share how long the symptoms have been active and what makes them worse.",
-    "Arrive a few minutes early for a smoother consultation and registration flow.",
+    "Bring previous prescriptions, CT scans, and hearing reports if available.",
+    "Share any previous drug allergies.",
+    "Arrive 5 minutes early .",
   ],
   quickFacts: [
     {
       label: "Experience",
       value: "25 years",
-      detail: "Senior ENT medical practice across major Delhi hospitals",
+      detail: "Senior ENT Consultant",
     },
     {
       label: "Current role",
@@ -55,7 +59,7 @@ const doctorProfile = {
     {
       label: "Previous role",
       value: "Senior ENT Consultant",
-      detail: "Max Healthcare, Delhi from September 2006 to January 2024",
+      detail: "Max Healthcare, Delhi ",
     },
   ],
   timeline: [
@@ -64,18 +68,18 @@ const doctorProfile = {
       place: "CK Birla Hospital, Punjabi Bagh, New Delhi",
       period: "January 2024 - present",
       points: [
-        "Leads specialist ENT consultations with focus on nose, sinus, and hearing-related concerns.",
-        "Diagnoses and treats patients while maintaining high standards of evidence-based medical practice.",
+        "Lead ENT consultant: with focus on ear ,nose, sinus, voice and swallowing problems.",
+        "Diagnose and treat patients with evidence-based medical practice.",
         "Works closely with interdisciplinary teams to ensure comprehensive patient care.",
       ],
     },
     {
       title: "Senior ENT Consultant",
       place: "Max Superspeciality Hospital Shalimar Bagh and Pitampura, Delhi",
-      period: "2006 - January 2024",
+      period: "2006 - 2024",
       points: [
-        "Built a long-running ENT practice with special interest in endoscopic sinus surgery and vertigo.",
-        "Provided general ENT surgery and advanced diagnosis and treatment for complex ENT presentations.",
+        "ENT practice with special interest in endoscopic sinus surgery and vertigo.",
+        "Performs ENT surgery ",
       ],
     },
     {
@@ -84,7 +88,7 @@ const doctorProfile = {
       period: "1999 - 2006",
       points: [
         "Gained extensive experience in patient care, diagnosis, treatment, and research.",
-        "Performed and assisted surgical procedures under renowned ENT surgeons at Sir Ganga Ram Hospital.",
+      
       ],
     },
   ],
@@ -100,6 +104,7 @@ const doctorProfile = {
   skills: [
     "ENT diagnosis and treatment",
     "Endoscopic sinus surgery",
+
     "Vertigo diagnosis and management",
     "Evidence-based medicine",
     "BLS and ACLS (American Heart Association)",
@@ -112,16 +117,14 @@ const doctorProfile = {
   ],
   awards: [
     "Honours in Pharmacology",
-    "International Travel Fellow 2012 by Indian Society of Otology",
+    "International Foreign Travel Fellow Award 2012 by Indian Society of Otology",
   ],
   languages: [
     "Hindi and English",
     "French DELF A1",
   ],
   bookingJourney: [
-    "Review the doctor profile first and understand whether the condition fits ENT care.",
-    "Choose from the currently published dates and 15-minute consultation slots.",
-    "Verify the phone number and receive a clear appointment summary.",
+    ,
   ],
   publicAdvice: [
     {

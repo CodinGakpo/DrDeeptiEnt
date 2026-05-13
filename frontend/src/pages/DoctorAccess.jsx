@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import Button from "../components/Button";
 import {
@@ -46,6 +46,10 @@ function formatBookedAt(value) {
   }
 
   return bookedAtFormatter.format(new Date(value));
+}
+
+function getAvailabilityDateTime(item, timeField = "start_time") {
+  return new Date(`${item.date}T${item[timeField]}`);
 }
 
 function AppointmentCard({ appointment, isPast = false }) {
@@ -109,6 +113,7 @@ export default function DoctorAccess() {
   const [availability, setAvailability] = useState([]);
   const [appointments, setAppointments] = useState(initialAppointments);
   const [appointmentView, setAppointmentView] = useState("upcoming");
+  const [availabilityView, setAvailabilityView] = useState("upcoming");
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
@@ -293,6 +298,40 @@ export default function DoctorAccess() {
   const visibleAppointments =
     appointmentView === "past" ? pastAppointments : upcomingAppointments;
   const nextAppointment = upcomingAppointments[0] || null;
+  const { upcomingAvailability, pastAvailability } = useMemo(() => {
+    const now = new Date();
+    const groups = availability.reduce(
+      (groups, item) => {
+        if (getAvailabilityDateTime(item, "end_time") < now) {
+          groups.past.push(item);
+        } else {
+          groups.upcoming.push(item);
+        }
+
+        return groups;
+      },
+      { upcoming: [], past: [] },
+    );
+
+    groups.upcoming.sort(
+      (left, right) =>
+        getAvailabilityDateTime(left, "start_time") -
+        getAvailabilityDateTime(right, "start_time"),
+    );
+    groups.past.sort(
+      (left, right) =>
+        getAvailabilityDateTime(right, "start_time") -
+        getAvailabilityDateTime(left, "start_time"),
+    );
+
+    return {
+      upcomingAvailability: groups.upcoming,
+      pastAvailability: groups.past,
+    };
+  }, [availability]);
+
+  const visibleAvailability =
+    availabilityView === "past" ? pastAvailability : upcomingAvailability;
 
   if (loading) {
     return (
@@ -598,12 +637,38 @@ export default function DoctorAccess() {
                 </form>
 
                 <div className="rounded-[30px] border border-[var(--color-line)] bg-white p-6 shadow-[0_18px_42px_rgba(36,53,51,0.04)]">
-                  <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-wood)]">
-                    Published schedule
-                  </p>
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-wood)]">
+                        Published schedule
+                      </p>
+                      <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
+                        Upcoming schedule stays focused on the nearest active dates first, while
+                        older rows stay available in a separate past view.
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setAvailabilityView("upcoming")}
+                        className={`rounded-full px-4 py-2 text-sm font-semibold transition ${availabilityView === "upcoming" ? "bg-[var(--color-cyan-deep)] text-white" : "border border-[var(--color-line)] bg-[var(--color-paper-soft)] text-[var(--color-mist)] hover:border-[rgba(45,124,119,0.22)] hover:text-[var(--color-cyan-deep)]"}`}
+                      >
+                        Upcoming ({upcomingAvailability.length})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setAvailabilityView("past")}
+                        className={`rounded-full px-4 py-2 text-sm font-semibold transition ${availabilityView === "past" ? "bg-[var(--color-wood-deep)] text-white" : "border border-[var(--color-line)] bg-[var(--color-paper-soft)] text-[var(--color-mist)] hover:border-[rgba(138,102,72,0.22)] hover:text-[var(--color-wood-deep)]"}`}
+                      >
+                        Past ({pastAvailability.length})
+                      </button>
+                    </div>
+                  </div>
+
                   <div className="mt-5 space-y-4">
-                    {availability.length ? (
-                      availability.map((item) => (
+                    {visibleAvailability.length ? (
+                      visibleAvailability.map((item) => (
                         <article
                           key={item.id}
                           className="rounded-[22px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-4"
@@ -665,7 +730,9 @@ export default function DoctorAccess() {
                       ))
                     ) : (
                       <div className="rounded-[22px] border border-dashed border-[var(--color-line)] bg-[var(--color-paper-soft)] p-5 text-sm text-[var(--color-mist)]">
-                        No availability has been added yet.
+                        {availabilityView === "past"
+                          ? "No past schedule entries are available."
+                          : "No upcoming availability has been added yet."}
                       </div>
                     )}
                   </div>
