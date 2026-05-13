@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 import { useBooking } from "../hooks/useBooking";
 import { formatDateLabel } from "../utils/formatters";
@@ -73,6 +74,15 @@ export default function DoctorProfile() {
               <p className="mt-2 text-sm font-semibold leading-6 text-[var(--color-ink)]">
                 {doctor.currentPracticeShort}
               </p>
+              <a
+                className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-cyan-deep)] transition hover:text-[var(--color-wood-deep)]"
+                href={doctor.currentPracticeMapUrl}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <FaMapMarkerAlt aria-hidden="true" />
+                Open in Google Maps
+              </a>
             </div>
 
             <div className="rounded-[22px] border border-[var(--color-line)] bg-[var(--color-paper-soft)] p-4">

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 import { useBooking } from "../hooks/useBooking";
 import { formatShortDate } from "../utils/formatters";
@@ -70,6 +71,15 @@ export default function Home() {
               <p className="mt-2 text-sm font-semibold leading-6 text-[var(--color-ink)]">
                 {doctor.currentPractice}
               </p>
+              <a
+                className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-cyan-deep)] transition hover:text-[var(--color-wood-deep)]"
+                href={doctor.currentPracticeMapUrl}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <FaMapMarkerAlt aria-hidden="true" />
+                Open in Google Maps
+              </a>
             </div>
 
             <div className="rounded-[22px] bg-[var(--color-paper-soft)] px-4 py-4">
@@ -195,7 +205,7 @@ export default function Home() {
               className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(138,102,72,0.26)] bg-[var(--color-paper-soft)] px-6 py-3 text-sm font-semibold text-[var(--color-wood-deep)] transition hover:bg-[var(--color-wood-soft)] sm:w-auto"
               href="#patient-guidance"
             >
-              Read patient guidance
+              Patient Education
             </a>
           </div>
         </div>
@@ -224,10 +234,6 @@ export default function Home() {
           <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--color-wood)]">
             Professional background
           </p>
-          <h2 className="mt-3 font-serif text-3xl text-[var(--color-ink)]">
-            A concise view of hospital experience before you go deeper into the full profile.
-          </h2>
-
           <div className="mt-5 space-y-4">
             {featuredTimeline.map((item) => (
               <article

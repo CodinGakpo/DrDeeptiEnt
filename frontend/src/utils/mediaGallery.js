@@ -99,15 +99,15 @@ export const awards = [
 export const recognitionHighlights = [
   {
     label: "Testimonials",
-    value: `${testimonials.length} review captures`,
+    value: "Patient reviews",
   },
   {
     label: "Conferences",
-    value: `${conferences.length} recognised highlights`,
+    value: "Highlights",
   },
   {
     label: "Awards",
-    value: `${awards.length} recognition moments`,
+    value: "Recognition",
   },
 ];
 

@@ -8,6 +8,8 @@ const doctorProfile = {
   specialtyLine: "ENT, Ear, Nose and Sinus Care",
   currentPractice: "CK Birla Hospital, Punjabi Bagh, New Delhi",
   currentPracticeShort: "CK Birla Hospital, Punjabi Bagh",
+  currentPracticeMapUrl:
+    "https://www.google.com/maps/search/?api=1&query=CK+Birla+Hospital+Punjabi+Bagh+New+Delhi",
   previousPractice: "Senior ENT Consultant at Max Healthcare, Delhi for 17 years",
   location: "Delhi, India",
   email: "drdeeptientclinic@gmail.com",
@@ -27,8 +29,7 @@ const doctorProfile = {
   ],
   whyBookNow: [
     "Early diagnosis means early treatment and prevention of complications.",
-    "Structured hospital-based ENT care helps patients move from symptoms to treatment clearly.",
-    "The clinic flow is designed for direct booking with one specialist instead of a confusing directory.",
+    "Structured hospital-based ENT care.",
   ],
   focusAreas: [
     "Nasal blockage and rhinosinusitis",
