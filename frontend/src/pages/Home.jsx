@@ -21,13 +21,20 @@ function getNextWeekdayDates(startDate, count = 3) {
     return [];
   }
 
+  const formatLocalIsoDate = (dateObj) => {
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+    const day = String(dateObj.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
   const results = [];
   const cursor = new Date(`${startDate}T00:00:00`);
 
   while (results.length < count) {
     const day = cursor.getDay();
     if (day >= 1 && day <= 5) {
-      results.push(cursor.toISOString().split("T")[0]);
+      results.push(formatLocalIsoDate(cursor));
     }
     cursor.setDate(cursor.getDate() + 1);
   }

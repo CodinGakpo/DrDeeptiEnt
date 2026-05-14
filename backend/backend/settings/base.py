@@ -161,6 +161,13 @@ AUTH_USER_MODEL = "accounts.User"
 DOCTOR_ACCESS_USERNAME = env_first(["DOCTOR_ACCESS_USERNAME", "username"], default="")
 DOCTOR_ACCESS_PASSWORD = env_first(["DOCTOR_ACCESS_PASSWORD", "password"], default="")
 
+# OTP DELIVERY
+OTP_PROVIDER = env("OTP_PROVIDER", default="console")
+TWILIO_ACCOUNT_SID = env("TWILIO_ACCOUNT_SID", default="")
+TWILIO_AUTH_TOKEN = env("TWILIO_AUTH_TOKEN", default="")
+TWILIO_SMS_FROM = env("TWILIO_SMS_FROM", default="")
+TWILIO_WHATSAPP_FROM = env("TWILIO_WHATSAPP_FROM", default="")
+
 # TIME
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Kolkata"

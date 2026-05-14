@@ -8,6 +8,7 @@ from rest_framework import status
 from clinic.models import TimeSlot
 
 from .models import Appointment, OTPVerification
+from .otp_delivery import OTPDeliveryError, send_otp
 
 
 User = get_user_model()
@@ -39,11 +40,19 @@ class RequestOTPView(APIView):
             otp=otp
         )
 
-        # DEV ONLY (Phase 1)
-        print("DEV OTP:", otp)
+        try:
+            delivery_channel = send_otp(phone, otp)
+        except OTPDeliveryError as exc:
+            return Response(
+                {"error": "Unable to deliver verification code right now. Please try again."},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
 
-        payload = {"message": "OTP sent successfully"}
-        if settings.DEBUG:
+        payload = {
+            "message": "OTP sent successfully",
+            "delivery_channel": delivery_channel,
+        }
+        if settings.DEBUG and str(settings.OTP_PROVIDER).strip().lower() == "console":
             payload["debug_otp"] = otp
 
         return Response(
