@@ -6,6 +6,8 @@ import { useBooking } from "../hooks/useBooking";
 import { formatShortDate } from "../utils/formatters";
 import { getPrimaryDoctorProfile } from "../utils/doctorProfiles";
 import { doctorProfileImage, recognitionHighlights, recognitionPreview } from "../utils/mediaGallery";
+import { useSeo } from "../seo/useSeo";
+import { buildClinicSchema } from "../seo/schemas";
 
 const treatmentHighlights = [
   "Nasal blockage",
@@ -43,6 +45,14 @@ function getNextWeekdayDates(startDate, count = 3) {
 }
 
 export default function Home() {
+  useSeo({
+    title: "Dr. Deepti Sinha | ENT Specialist in Delhi",
+    description:
+      "Book ENT consultations with Dr. Deepti Sinha in Delhi for sinus, allergy, ear, vertigo, and throat concerns.",
+    canonical: "https://drdeeptientdelhi.in/",
+    structuredData: buildClinicSchema(),
+  });
+
   const { doctors, error, loadDoctors, loadingDoctors } = useBooking();
 
   useEffect(() => {

@@ -8,6 +8,7 @@ import { useBooking } from "../hooks/useBooking";
 import { getApiErrorMessage } from "../utils/api";
 import { formatDateLabel, formatTimeRange } from "../utils/formatters";
 import { getDoctorProfileContent } from "../utils/doctorProfiles";
+import { useSeo } from "../seo/useSeo";
 
 const bookingSteps = [
   {
@@ -74,6 +75,13 @@ function isValidPhone(phone) {
 }
 
 export default function BookAppointment() {
+  useSeo({
+    title: "Book ENT Appointment | Dr. Deepti Sinha",
+    description:
+      "Book an ENT appointment online with Dr. Deepti Sinha. Choose date, slot, and confirm your visit with OTP verification.",
+    canonical: "https://drdeeptientdelhi.in/book",
+  });
+
   const [searchParams] = useSearchParams();
   const preferredDoctorId = Number(searchParams.get("doctor"));
 

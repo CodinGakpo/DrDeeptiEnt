@@ -7,6 +7,7 @@ import {
   recognitionHighlights,
   testimonials,
 } from "../utils/mediaGallery";
+import { useSeo } from "../seo/useSeo";
 
 function GalleryCard({ item, tone = "paper" }) {
   const toneClass =
@@ -76,6 +77,13 @@ function MarqueeRow({ items, title, tone = "soft", reverse = false }) {
 }
 
 export default function Recognition() {
+  useSeo({
+    title: "Recognition, Awards, and Testimonials | Dr. Deepti Sinha",
+    description:
+      "Explore patient testimonials, awards, and conference highlights for Dr. Deepti Sinha ENT clinic.",
+    canonical: "https://drdeeptientdelhi.in/recognition",
+  });
+
   return (
     <div className="space-y-6 py-4 sm:space-y-8 sm:py-6 lg:py-8">
       <section className="grid gap-4 xl:grid-cols-[1.02fr_0.98fr]">

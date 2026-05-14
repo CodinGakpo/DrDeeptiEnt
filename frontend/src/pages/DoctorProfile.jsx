@@ -6,8 +6,18 @@ import { useBooking } from "../hooks/useBooking";
 import { formatDateLabel } from "../utils/formatters";
 import { getDoctorProfileContent } from "../utils/doctorProfiles";
 import { doctorProfileImage, recognitionHighlights } from "../utils/mediaGallery";
+import { useSeo } from "../seo/useSeo";
+import { buildDoctorSchema } from "../seo/schemas";
 
 export default function DoctorProfile() {
+  useSeo({
+    title: "Doctor Profile | Dr. Deepti Sinha ENT",
+    description:
+      "Read Dr. Deepti Sinha's ENT profile, experience, clinical focus areas, and consultation background in Delhi.",
+    canonical: "https://drdeeptientdelhi.in/doctors/1",
+    structuredData: buildDoctorSchema(),
+  });
+
   const { doctorId } = useParams();
   const { doctors, loadDoctors, loadingDoctors } = useBooking();
 
