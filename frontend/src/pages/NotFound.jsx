@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
+import { useSeo } from "../seo/useSeo";
 
 export default function NotFound() {
+  useSeo({
+    title: "Page Not Found | Dr. Deepti Sinha ENT",
+    description: "The requested page was not found. Return to the clinic home or booking page.",
+    canonical: "https://drdeeptientdelhi.in/404",
+    robots: "noindex, nofollow",
+  });
+
   return (
     <div className="py-4 sm:py-6">
       <div className="rounded-[28px] border border-[var(--color-line)] bg-[linear-gradient(145deg,var(--color-paper),#f8fcfb)] p-5 text-center shadow-[0_24px_60px_rgba(36,53,51,0.06)] sm:p-8">

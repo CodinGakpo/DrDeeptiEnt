@@ -14,6 +14,7 @@ import {
 import { getApiErrorMessage } from "../utils/api";
 import { formatDateLabel, formatTimeRange } from "../utils/formatters";
 import { getDoctorProfileContent } from "../utils/doctorProfiles";
+import { useSeo } from "../seo/useSeo";
 
 const initialCredentials = {
   username: "",
@@ -106,6 +107,13 @@ function AppointmentCard({ appointment, isPast = false }) {
 }
 
 export default function DoctorAccess() {
+  useSeo({
+    title: "Doctor Access | Private",
+    description: "Private doctor access portal for appointment and availability management.",
+    canonical: "https://drdeeptientdelhi.in/doctor-access",
+    robots: "noindex, nofollow, noarchive, nosnippet",
+  });
+
   const [credentials, setCredentials] = useState(initialCredentials);
   const [availabilityForm, setAvailabilityForm] = useState(initialAvailabilityForm);
   const [authenticated, setAuthenticated] = useState(false);

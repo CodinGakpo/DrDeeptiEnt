@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /doctor-access
+
+Sitemap: https://drdeeptientdelhi.in/sitemap.xml

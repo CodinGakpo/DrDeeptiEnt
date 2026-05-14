@@ -1,0 +1,16 @@
+{
+  "name": "Dr. Deepti Sinha ENT Clinic",
+  "short_name": "Deepti ENT",
+  "description": "Book ENT consultations in Delhi with Dr. Deepti Sinha.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f3ed",
+  "theme_color": "#2d7c77",
+  "icons": [
+    {
+      "src": "/profilePicture.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
