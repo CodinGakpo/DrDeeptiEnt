@@ -80,11 +80,10 @@ const doctorProfile = {
       period: "2006 - 2024",
       points: [
         "ENT practice with special interest in endoscopic sinus surgery and vertigo.",
-        "Performs ENT surgery ",
       ],
     },
     {
-      title: "Junior Residency and Registrar",
+      title: "Junior Residency and Registrarship",
       place: "Sir Ganga Ram Hospital, New Delhi",
       period: "1999 - 2006",
       points: [
@@ -99,8 +98,8 @@ const doctorProfile = {
     "MBBS, Sri Krishna Medical College",
   ],
   internationalExposure: [
-    "Clinique Causse, Beziers, France. ISO International Travel Fellow, 2012.",
-    "University of Texas South Western, Clinical Observer, Rhinology and Skull Base Unit, 2013.",
+    "2012: Clinique Causse, Beziers, France. ISO International Travel Fellow.",
+    "2013: University of Texas South Western, Clinical Observer, Rhinology and Skull Base Unit.",
   ],
   skills: [
     "ENT diagnosis and treatment",
@@ -121,8 +120,9 @@ const doctorProfile = {
     "International Foreign Travel Fellow Award 2012 by Indian Society of Otology",
   ],
   languages: [
-    "Hindi and English",
-    "French DELF A1",
+    "Hindi",
+    "English",
+    "French",
   ],
   bookingJourney: [
     ,
