@@ -184,7 +184,7 @@ export function getDoctorProfileContent(doctor) {
   return {
     ...doctorProfile,
     id: doctor?.id ?? null,
-    next_available_date: doctor?.next_available_date ?? null,
+    available_dates: doctor?.available_dates ?? [],
     open_slot_count: doctor?.open_slot_count ?? 0,
     appointmentLink: doctor?.id ? `/book?doctor=${doctor.id}` : "/book",
   };

@@ -8,7 +8,7 @@ from .models import AvailabilitySlot, DoctorProfile, TimeSlot
 class DoctorProfileSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
     initials = serializers.SerializerMethodField()
-    next_available_date = serializers.SerializerMethodField()
+    available_dates = serializers.SerializerMethodField()
     open_slot_count = serializers.SerializerMethodField()
 
     class Meta:
@@ -19,7 +19,7 @@ class DoctorProfileSerializer(serializers.ModelSerializer):
             "initials",
             "specialization",
             "bio",
-            "next_available_date",
+            "available_dates",
             "open_slot_count",
         ]
 
@@ -32,21 +32,20 @@ class DoctorProfileSerializer(serializers.ModelSerializer):
         initials = "".join(word[0] for word in words[:2]).upper()
         return initials or "DR"
 
-    def get_next_available_date(self, obj):
+    def get_available_dates(self, obj):
         today = timezone.localdate()
-        next_date = (
+        dates = (
             AvailabilitySlot.objects.filter(
                 doctor=obj,
                 is_active=True,
                 date__gte=today,
                 time_slots__is_booked=False,
             )
-            .order_by("date", "start_time")
+            .order_by("date")
             .values_list("date", flat=True)
             .distinct()
-            .first()
         )
-        return next_date
+        return list(dates)[:7]  # return up to next 7 available dates
 
     def get_open_slot_count(self, obj):
         today = timezone.localdate()
