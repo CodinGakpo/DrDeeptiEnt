@@ -128,12 +128,12 @@ export default function Home() {
               </p>
             </div>
 
-            <a
+            {/* <a
               className="break-all rounded-[22px] bg-[var(--color-paper-soft)] px-4 py-4 text-sm font-semibold leading-6 text-[var(--color-cyan-deep)] transition hover:bg-[var(--color-wood-soft)] sm:col-span-2"
               href={`mailto:${doctor.email}`}
             >
               {doctor.email}
-            </a>
+            </a> */}
           </div>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -242,7 +242,7 @@ export default function Home() {
             Why patients book
           </p>
           <h2 className="mt-3 font-serif text-3xl text-[var(--color-ink)]">
-            Breathing, sinus, allergy, ear, and vertigo concerns handled with expertise.
+            Breathing, Sinus, Allergy, Ear, and Vertigo concerns handled with expertise.
           </h2>
           <ul className="mt-5 space-y-3">
             {doctor.whyBookNow.slice(0, 4).map((item) => (
@@ -354,7 +354,7 @@ export default function Home() {
 
           <div className="rounded-[24px] border border-[var(--color-line)] bg-[linear-gradient(145deg,#fefcf8,#fff)] p-5 shadow-[0_20px_48px_rgba(36,53,51,0.05)] sm:col-span-2">
             <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--color-wood)]">
-              Recognition and communication
+              Recognition
             </p>
             <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--color-mist)]">
               {doctor.awards.map((item) => (
@@ -465,7 +465,7 @@ export default function Home() {
           <h3 className="mt-3 font-serif text-3xl text-[var(--color-ink)]">
             {featuredAdvice.title}
           </h3>
-          <p className="mt-4 text-sm leading-7 text-[var(--color-mist)] sm:leading-8">
+          <p className="mt-4 text-sm leading-7 sm:leading-8">
             {featuredAdvice.summary}
           </p>
 
@@ -536,27 +536,28 @@ export default function Home() {
             <p className="text-[11px] uppercase tracking-[0.3em] text-[var(--color-wood)]">
               Consultation access
             </p>
-            <h2 className="mt-3 font-serif text-3xl text-[var(--color-ink)]">
-              Review the doctor, understand the care style, then book with clarity.
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-mist)]">
-              The experience now reads like a professional hospital microsite on mobile first,
-              while keeping the booking path clear once the patient feels confident to proceed.
-            </p>
+            <p>    </p>
+            <br/>
           </div>
 
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <Link
               className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(45,124,119,0.18)] bg-white px-6 py-3 text-sm font-semibold text-[var(--color-cyan-deep)] shadow-[0_14px_28px_rgba(36,53,51,0.08)] transition hover:border-[rgba(45,124,119,0.28)] hover:bg-[var(--color-cyan-soft)] sm:w-auto"
+              to="/book"
+            >
+              Book a visit
+            </Link>
+            <Link
+              className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(45,124,119,0.18)] bg-white px-6 py-3 text-sm font-semibold text-[var(--color-cyan-deep)] shadow-[0_14px_28px_rgba(36,53,51,0.08)] transition hover:border-[rgba(45,124,119,0.28)] hover:bg-[var(--color-cyan-soft)] sm:w-auto"
               to="/recognition"
             >
-              See recognition gallery
+              Recognition
             </Link>
             <Link
               className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(45,124,119,0.18)] bg-white px-6 py-3 text-sm font-semibold text-[var(--color-cyan-deep)] shadow-[0_14px_28px_rgba(36,53,51,0.08)] transition hover:border-[rgba(45,124,119,0.28)] hover:bg-[var(--color-cyan-soft)] sm:w-auto"
               to={doctor.id ? `/doctors/${doctor.id}` : "/doctors/1"}
             >
-              View full doctor profile
+              Doctor profile
             </Link>
           </div>
         </div>

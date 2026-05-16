@@ -25,7 +25,7 @@ export default function App() {
             <div className="flex items-start justify-between gap-3 sm:items-center">
               <NavLink className="min-w-0" to="/">
                 <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--color-wood)] sm:text-xs">
-                  ENT care in Delhi
+                  Expert ENT Care in Delhi
                 </p>
                 <p className="truncate font-serif text-lg text-[var(--color-ink)] sm:text-xl">
                   Dr. Deepti Sinha
