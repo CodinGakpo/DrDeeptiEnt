@@ -51,7 +51,7 @@ export default function DoctorList({ doctors, onSelect, selectedDoctorId }) {
                     </div>
 
                     <div className="inline-flex self-start rounded-full border border-[var(--color-line)] bg-[var(--color-paper-soft)] px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-[var(--color-wood)]">
-                      Next {formatShortDate(profile.next_available_date)}
+                      Next {profile.available_dates?.length ? formatShortDate(profile.available_dates[0]) : "TBD"}
                     </div>
                   </div>
 

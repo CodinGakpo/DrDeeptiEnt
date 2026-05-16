@@ -554,10 +554,10 @@ export default function BookAppointment() {
             ) : (
               <div className="rounded-[24px] border border-dashed border-[var(--color-line)] bg-[var(--color-paper-soft)] p-6 text-center">
                 <p className="text-lg font-semibold text-[var(--color-ink)]">
-                  No schedule was published for that day.
+                  No available slots for that day.
                 </p>
                 <p className="mt-2 text-sm leading-7 text-[var(--color-mist)]">
-                  Try another date or check again later for newly published slots.
+                  Try another date or check again later for newly available slots.
                 </p>
               </div>
             )}

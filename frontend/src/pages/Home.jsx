@@ -18,31 +18,7 @@ const treatmentHighlights = [
   "General ENT surgery",
 ];
 
-function getNextWeekdayDates(startDate, count = 3) {
-  if (!startDate) {
-    return [];
-  }
 
-  const formatLocalIsoDate = (dateObj) => {
-    const year = dateObj.getFullYear();
-    const month = String(dateObj.getMonth() + 1).padStart(2, "0");
-    const day = String(dateObj.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
-
-  const results = [];
-  const cursor = new Date(`${startDate}T00:00:00`);
-
-  while (results.length < count) {
-    const day = cursor.getDay();
-    if (day >= 1 && day <= 5) {
-      results.push(formatLocalIsoDate(cursor));
-    }
-    cursor.setDate(cursor.getDate() + 1);
-  }
-
-  return results;
-}
 
 export default function Home() {
   useSeo({
@@ -64,7 +40,7 @@ export default function Home() {
   const supportingAdvice = doctor.publicAdvice.slice(1);
   const featuredTimeline = doctor.timeline.slice(0, 3);
   const featuredSkills = doctor.skills.slice(0, 4);
-  const nextPublishedDates = getNextWeekdayDates(doctor.next_available_date, 3);
+  const nextPublishedDates = doctor.available_dates.slice(0, 3);
 
   return (
     <div className="space-y-6 py-4 sm:space-y-8 sm:py-6 lg:py-8">
@@ -177,7 +153,7 @@ export default function Home() {
               Current availability
             </p>
             <h2 className="mt-3 text-2xl font-semibold text-[var(--color-ink)]">
-              Monday to Friday by Appointment Only
+              Monday to Saturday by Appointment Only
             </h2>
 
             <div className="mt-5 rounded-[22px] border border-[var(--color-line)] bg-[var(--color-paper)] p-4">
