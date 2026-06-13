@@ -2,7 +2,6 @@ import { useCallback, useState } from "react";
 import {
   getDoctors,
   getSlots,
-  requestOTP,
   bookAppointment,
 } from "../api/booking";
 import { getApiErrorMessage } from "../utils/api";
@@ -73,7 +72,6 @@ export function useBooking() {
     loadDoctors,
     loadSlots,
     resetSlots,
-    requestOTP,
     bookAppointment,
   };
 }

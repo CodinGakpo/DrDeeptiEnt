@@ -5,7 +5,8 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}/profilePicture.png`;
 export const defaultSeo = {
   title: "Dr. Deepti Sinha | ENT Specialist in Delhi",
   description:
-    "Book ENT consultations with Dr. Deepti Sinha in Delhi for sinus, allergy, ear, vertigo, and throat concerns.",
+    "Book ENT consultations with Dr. Deepti Sinha in Delhi for sinus, allergy, ear, vertigo, and throat concerns. Visit drdeeptientdelhi for expert care.",
+  keywords: "drdeeptient, drdeeptientdelhi, delhidrdeeptient, Dr Deepti Sinha ENT Delhi, ENT specialist Delhi, best ENT Delhi",
   canonical: SITE_URL,
   robots: "index, follow",
   type: "website",

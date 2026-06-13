@@ -64,7 +64,7 @@ class RequestOTPView(APIView):
 class BookAppointmentView(APIView):
     def post(self, request):
         phone = normalize_phone_number(request.data.get("phone_number"))
-        otp = str(request.data.get("otp", "")).strip()
+        firebase_token = str(request.data.get("firebase_token", "")).strip()
         slot_id = request.data.get("slot_id")
         name = str(request.data.get("name", "")).strip()
         age = request.data.get("age")
@@ -72,8 +72,8 @@ class BookAppointmentView(APIView):
 
         if len(phone) < 10 or len(phone) > 15:
             return Response({"error": "Enter a valid phone number"}, status=400)
-        if len(otp) != 6:
-            return Response({"error": "Enter the 6-digit verification code"}, status=400)
+        if not firebase_token:
+            return Response({"error": "Missing Firebase token"}, status=400)
         if not slot_id:
             return Response({"error": "Choose a time slot before confirming"}, status=400)
         if not name:
@@ -89,18 +89,16 @@ class BookAppointmentView(APIView):
         if age <= 0:
             return Response({"error": "Enter a valid age"}, status=400)
 
-        # 1. Verify OTP
+        # 1. Verify Firebase Token
         try:
-            otp_obj = OTPVerification.objects.filter(
-                phone_number=phone,
-                otp=otp,
-                is_verified=False
-            ).latest("created_at")
-        except OTPVerification.DoesNotExist:
-            return Response({"error": "Invalid OTP"}, status=400)
-
-        otp_obj.is_verified = True
-        otp_obj.save()
+            from backend.firebase import verify_firebase_token
+            decoded_token = verify_firebase_token(firebase_token)
+            verified_phone = normalize_phone_number(decoded_token.get("phone_number", ""))
+            
+            if not verified_phone or verified_phone[-10:] != phone[-10:]:
+                return Response({"error": "Token phone number mismatch"}, status=400)
+        except Exception as e:
+            return Response({"error": f"Invalid Firebase Token: {str(e)}"}, status=400)
 
         # 2. Get or create patient
         user, _ = User.objects.get_or_create(
