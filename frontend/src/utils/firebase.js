@@ -11,8 +11,4 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-console.log("Firebase config loaded:", {
-  ...firebaseConfig,
-  apiKey: firebaseConfig.apiKey ? firebaseConfig.apiKey.substring(0, 5) + "..." : undefined
-});
 export const auth = getAuth(app);
