@@ -58,6 +58,10 @@ export function useSeo(options = {}) {
       name: "description",
       content: seo.description,
     });
+    upsertMeta("meta[name='keywords']", {
+      name: "keywords",
+      content: seo.keywords,
+    });
     upsertMeta("meta[name='robots']", {
       name: "robots",
       content: seo.robots,

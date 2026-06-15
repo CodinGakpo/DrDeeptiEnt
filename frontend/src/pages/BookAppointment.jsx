@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { Link, useSearchParams } from "react-router-dom";
 
 import Button from "../components/Button";
@@ -8,6 +9,7 @@ import { useBooking } from "../hooks/useBooking";
 import { getApiErrorMessage } from "../utils/api";
 import { formatDateLabel, formatTimeRange } from "../utils/formatters";
 import { getDoctorProfileContent } from "../utils/doctorProfiles";
+import { auth } from "../utils/firebase";
 import { useSeo } from "../seo/useSeo";
 
 const bookingSteps = [
@@ -109,6 +111,8 @@ export default function BookAppointment() {
   const [actionError, setActionError] = useState("");
   const [bookingLoading, setBookingLoading] = useState(false);
   const [receipt, setReceipt] = useState(null);
+  const [confirmationResult, setConfirmationResult] = useState(null);
+  const recaptchaVerifier = useRef(null);
 
   useEffect(() => {
     loadDoctors()
@@ -245,24 +249,46 @@ export default function BookAppointment() {
     }));
 
     try {
-      const response = await requestOTP(patientForm.phone);
+      if (!recaptchaVerifier.current) {
+        recaptchaVerifier.current = new RecaptchaVerifier(auth, "recaptcha-container", {
+          size: "invisible",
+        });
+      }
+
+      let phoneStr = patientForm.phone;
+      if (phoneStr.length === 10) {
+        phoneStr = "+91" + phoneStr;
+      } else if (!phoneStr.startsWith("+")) {
+        phoneStr = "+" + phoneStr;
+      }
+
+      const result = await signInWithPhoneNumber(auth, phoneStr, recaptchaVerifier.current);
+      setConfirmationResult(result);
+
       setOtpState({
         requested: true,
         loading: false,
-        message: response.message || "Verification code sent.",
-        debugOtp: response.debug_otp || "",
+        message: "Verification code sent securely via Firebase.",
+        debugOtp: "",
         phone: patientForm.phone,
       });
     } catch (requestError) {
       setOtpState(initialOtpState);
+      if (recaptchaVerifier.current) {
+        recaptchaVerifier.current.render().then((widgetId) => {
+          if (window.grecaptcha) {
+            window.grecaptcha.reset(widgetId);
+          }
+        }).catch(() => {});
+      }
       setActionError(
-        getApiErrorMessage(requestError, "We could not send the verification code."),
+        requestError.message || "We could not send the verification code via Firebase.",
       );
     }
   }
 
   async function handleConfirmAppointment() {
-    if (!otpState.requested) {
+    if (!otpState.requested || !confirmationResult) {
       setActionError("Request the verification code first.");
       return;
     }
@@ -277,9 +303,12 @@ export default function BookAppointment() {
     setBookingLoading(true);
 
     try {
+      const result = await confirmationResult.confirm(otp);
+      const firebaseToken = await result.user.getIdToken();
+
       const response = await bookAppointment({
         phone_number: patientForm.phone,
-        otp,
+        firebase_token: firebaseToken,
         slot_id: selectedSlotId,
         name: patientForm.name.trim(),
         age: Number(patientForm.age),
@@ -290,7 +319,7 @@ export default function BookAppointment() {
       setStep(6);
     } catch (requestError) {
       setActionError(
-        getApiErrorMessage(requestError, "We could not confirm the appointment."),
+        requestError.message || "We could not confirm the appointment.",
       );
     } finally {
       setBookingLoading(false);
@@ -312,6 +341,7 @@ export default function BookAppointment() {
 
   return (
     <div className="space-y-6 py-4 sm:space-y-8 sm:py-6 lg:py-8">
+      <div id="recaptcha-container"></div>
       <section className="space-y-4">
         <div className="rounded-[28px] border border-[var(--color-line)] bg-[linear-gradient(145deg,var(--color-paper),#f8fcfb)] p-5 shadow-[0_22px_52px_rgba(36,53,51,0.06)] sm:p-7">
           <p className="text-[11px] uppercase tracking-[0.3em] text-[var(--color-wood)]">
