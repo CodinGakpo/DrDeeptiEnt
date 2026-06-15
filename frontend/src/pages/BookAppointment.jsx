@@ -268,7 +268,7 @@ export default function BookAppointment() {
       setOtpState({
         requested: true,
         loading: false,
-        message: "Verification code sent securely via Firebase.",
+        message: "Verification code sent securely. Note: OTP may take a few minutes to arrive depending on your telecom carrier.",
         debugOtp: "",
         phone: patientForm.phone,
       });
