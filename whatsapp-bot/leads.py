@@ -36,4 +36,5 @@ async def notify_staff(lead: WhatsAppLead):
         f"Phone: {lead.phone_number}"
     )
     
-    await whatsapp.send_text(STAFF_WHATSAPP_NUMBER, text)
+    staff_num = STAFF_WHATSAPP_NUMBER.replace("+", "").replace(" ", "").replace("-", "")
+    await whatsapp.send_text(staff_num, text)

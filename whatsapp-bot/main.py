@@ -1,4 +1,5 @@
 import os
+from mangum import Mangum
 import hmac
 import hashlib
 from fastapi import FastAPI, Request, HTTPException, Depends, Response
@@ -168,12 +169,18 @@ async def handle_webhook(request: Request, db: AsyncSession = Depends(get_db)):
                     break
                     
         if selected_opt:
-            target_id = selected_opt["id"]
+            target_id = selected_opt.get("next", selected_opt["id"])
             set_ctx = selected_opt.get("set_context")
             
     if not target_id:
         # Unknown input, just re-render current node
-        await graph.render_node(session_obj.current_node, session_obj, from_phone)
+        node_to_render = graph.get_node(session_obj.current_node)
+        if "message" not in node_to_render:
+            session.clear_to_root(session_obj)
+            await session.save_session(db, session_obj)
+            await graph.render_node(session_obj.current_node, session_obj, from_phone)
+        else:
+            await graph.render_node(session_obj.current_node, session_obj, from_phone)
         return {"status": "ok"}
         
     if set_ctx:
@@ -185,7 +192,10 @@ async def handle_webhook(request: Request, db: AsyncSession = Depends(get_db)):
     next_node = graph.get_node(session_obj.current_node)
     if next_node.get("action") == "save_lead_and_notify_staff":
         lead = await leads.save_lead(db, session_obj)
-        await leads.notify_staff(lead)
+        try:
+            await leads.notify_staff(lead)
+        except Exception as e:
+            print(f"Failed to notify staff: {e}")
         target_id = next_node.get("next")
         session.push_node(session_obj, target_id)
         
@@ -193,3 +203,6 @@ async def handle_webhook(request: Request, db: AsyncSession = Depends(get_db)):
     await graph.render_node(session_obj.current_node, session_obj, from_phone)
     
     return {"status": "ok"}
+
+# AWS Lambda entry point — Mangum wraps the FastAPI ASGI app
+handler = Mangum(app, lifespan="off")

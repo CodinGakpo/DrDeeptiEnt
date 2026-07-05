@@ -9,10 +9,43 @@ with open(BASE_DIR / "nodes.json", "r", encoding="utf-8") as f:
 
 RESET_KEYWORDS = {"hi", "hello", "menu", "start", "restart"}
 
+def get_dynamic_options(node_id: str) -> list:
+    if node_id == "collect_time":
+        from datetime import datetime, timedelta
+        options = []
+        now = datetime.utcnow() + timedelta(hours=5, minutes=30) # IST
+        days_added = 0
+        i = 1
+        while days_added < 3:
+            dt = now + timedelta(days=i)
+            i += 1
+            if dt.weekday() == 6: # Skip Sundays
+                continue
+            day_str = dt.strftime("%A, %d %b")
+            options.append({
+                "id": f"time_{days_added}_morn",
+                "next": "confirm",
+                "label": f"{day_str} Morning",
+                "set_context": {"preferred_time": f"{day_str} Morning"}
+            })
+            options.append({
+                "id": f"time_{days_added}_aft",
+                "next": "confirm",
+                "label": f"{day_str} Afternoon",
+                "set_context": {"preferred_time": f"{day_str} Afternoon"}
+            })
+            days_added += 1
+        return options
+    return []
+
 def get_node(node_id: str):
     if node_id not in NODES:
         raise KeyError(f"Node '{node_id}' not found in nodes.json")
-    return NODES[node_id]
+    node = dict(NODES[node_id])
+    dyn_opts = get_dynamic_options(node_id)
+    if dyn_opts:
+        node["options"] = dyn_opts
+    return node
 
 def format_message(text: str, context: dict) -> str:
     """Replaces {field|default} with context values"""

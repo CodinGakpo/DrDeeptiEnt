@@ -35,6 +35,7 @@ def pop_node(session: ConversationSession):
 def clear_to_root(session: ConversationSession):
     session.node_stack = []
     session.current_node = "root"
+    session.context = {}
 
 def set_context(session: ConversationSession, kv_dict: dict):
     new_context = dict(session.context)
