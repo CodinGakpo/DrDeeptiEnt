@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: whatsapp-bot
+    env: python
+    buildCommand: pip install -r whatsapp-bot/requirements.txt
+    startCommand: bash whatsapp-bot/start.sh
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: WHATSAPP_VERIFY_TOKEN
+        sync: false
+      - key: WHATSAPP_ACCESS_TOKEN
+        sync: false
+      - key: META_APP_SECRET
+        sync: false
+      - key: STAFF_WHATSAPP_NUMBER
+        sync: false
+      - key: PGHOST
+        sync: false
+      - key: PGDATABASE
+        sync: false
+      - key: PGUSER
+        sync: false
+      - key: PGPASSWORD
+        sync: false

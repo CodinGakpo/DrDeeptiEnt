@@ -139,20 +139,38 @@ TEMPLATES = [
 WSGI_APPLICATION = "backend.wsgi.application"
 
 # DATABASE (Neon / Postgres)
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "HOST": env("PGHOST", default=""),
-        "NAME": env("PGDATABASE", default=""),
-        "USER": env("PGUSER", default=""),
-        "PASSWORD": env("PGPASSWORD", default=""),
-        "PORT": env("PGPORT", default="5432"),
-        "OPTIONS": {
-            "sslmode": env("PGSSLMODE", default="require"),
-            "channel_binding": env("PGCHANNELBINDING", default="require"),
-        },
+import urllib.parse
+db_url = env_first(["NEON_CONNECTION_STRING", "DATABASE_URL"], default="")
+
+if db_url:
+    parsed = urllib.parse.urlparse(db_url)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "HOST": parsed.hostname,
+            "NAME": parsed.path.lstrip("/"),
+            "USER": parsed.username,
+            "PASSWORD": parsed.password,
+            "PORT": parsed.port or 5432,
+            "OPTIONS": {
+                "sslmode": "require",
+            },
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "HOST": env("PGHOST", default=""),
+            "NAME": env("PGDATABASE", default=""),
+            "USER": env("PGUSER", default=""),
+            "PASSWORD": env("PGPASSWORD", default=""),
+            "PORT": env("PGPORT", default="5432"),
+            "OPTIONS": {
+                "sslmode": env("PGSSLMODE", default="require"),
+            },
+        }
+    }
 
 # AUTH
 AUTH_USER_MODEL = "accounts.User"

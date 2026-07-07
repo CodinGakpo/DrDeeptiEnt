@@ -60,7 +60,7 @@ const doctorProfile = {
     {
       label: "Previous role",
       value: "Senior ENT Consultant",
-      detail: "Max Healthcare, Delhi ",
+      detail: "@Max Healthcare, Delhi for 17 years.",
     },
   ],
   timeline: [

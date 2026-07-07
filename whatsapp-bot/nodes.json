@@ -1,0 +1,115 @@
+{
+  "root": {
+    "message": "Hi! Thanks for reaching out to Dr. Deepti Sinha's clinic (ENT specialist).\n\nhttps://drdeeptientdelhi.in/\n\nHow can we help you today?",
+    "render_as": "list",
+    "options": [
+      { "id": "book_appointment", "label": "Book appointment" },
+      { "id": "location", "label": "Location & contact" },
+      { "id": "disease_info", "label": "Disease information" },
+      { "id": "testimonials", "label": "Patient testimonials" }
+    ],
+    "show_back": false,
+    "show_home": false
+  },
+
+  "book_appointment": {
+    "message": "Sure — what would you like to consult Dr. Deepti for?",
+    "render_as": "list",
+    "options": [
+      { "id": "concern_nose", "next": "location", "label": "Nose problem", "set_context": { "concern": "Nose problem" } },
+      { "id": "concern_ear", "next": "location", "label": "Ear problem", "set_context": { "concern": "Ear problem" } },
+      { "id": "concern_vertigo", "next": "location", "label": "Vertigo / Chakkar", "set_context": { "concern": "Vertigo" } },
+      { "id": "concern_mouth", "next": "location", "label": "Mouth / throat / neck", "set_context": { "concern": "Mouth/throat/neck" } },
+      { "id": "concern_voice", "next": "location", "label": "Voice / swallowing", "set_context": { "concern": "Voice/swallowing" } },
+      { "id": "concern_endoscopy", "next": "location", "label": "Endoscopy", "set_context": { "concern": "Endoscopy" } },
+      { "id": "concern_headneck", "next": "location", "label": "Head & neck cancer screening", "set_context": { "concern": "Head & neck cancer screening" } }
+    ],
+    "show_back": true,
+    "show_home": true
+  },
+
+  "location": {
+    "message": "Dr. Deepti currently sees patients at:\n\n1. CK Birla Hospital, Punjabi Bagh, Delhi — Mon to Fri\n2. Adarsh ENT Clinic, C-2 West Enclave, Pitampura — Tue to Fri\n\nTap a location to continue.",
+    "render_as": "list",
+    "options": [
+      { "id": "loc_ckbirla", "next": "collect_name", "label": "CK Birla Hospital", "set_context": { "location": "CK Birla Hospital, Punjabi Bagh, New Delhi" } },
+      { "id": "loc_adarsh", "next": "collect_name", "label": "Adarsh ENT Clinic", "set_context": { "location": "Adarsh ENT Clinic, Pitampura" } }
+    ],
+    "show_back": true,
+    "show_home": true
+  },
+
+  "collect_name": {
+    "message": "Great — what's the patient's full name?",
+    "render_as": "text_input",
+    "type": "text_input",
+    "validation": "non_empty, max_length:100",
+    "on_invalid": "Please enter a valid name.",
+    "next": "collect_age",
+    "context_key": "name",
+    "show_back": true,
+    "show_home": true
+  },
+
+  "collect_age": {
+    "message": "And the patient's age?",
+    "render_as": "text_input",
+    "type": "text_input",
+    "validation": "integer_range:0-99",
+    "on_invalid": "Please enter age as a number (0-99).",
+    "next": "collect_time",
+    "context_key": "age",
+    "show_back": true,
+    "show_home": true
+  },
+
+  "collect_time": {
+    "message": "When would you like to visit?",
+    "render_as": "list",
+    "type": "options",
+    "show_back": true,
+    "show_home": true
+  },
+
+  "confirm": {
+    "message": "Please confirm these details:\n\nName: {name}\nAge: {age}\nReason: {concern|General consultation}\nLocation: {location}\nPreferred time: {preferred_time}\n\nIs this correct?",
+    "render_as": "buttons",
+    "options": [
+      { "id": "submit_lead", "label": "Confirm" },
+      { "id": "collect_name", "label": "Start over" }
+    ],
+    "show_back": false,
+    "show_home": true
+  },
+
+  "submit_lead": {
+    "action": "save_lead_and_notify_staff",
+    "next": "done"
+  },
+
+  "done": {
+    "message": "Thank you, {name}! Your appointment request has been received.\n\nOur team will confirm your visit shortly via WhatsApp or call.",
+    "render_as": "buttons",
+    "options": [
+      { "id": "root", "label": "Main menu" }
+    ],
+    "show_back": false,
+    "show_home": false
+  },
+
+  "disease_info": {
+    "message": "Conditions Dr. Deepti commonly treats:\n\n- Nose & sinus: congestion, sinusitis, allergies, polyps, endoscopic sinus surgery\n- Ear: hearing loss, infections, ear pain, microscopic ear surgery\n- Vertigo: dizziness & balance disorders, Epley's Maneuver\n- Throat & voice: swallowing difficulty, voice changes, microlaryngeal surgery\n- Head & neck cancer screening:{for early warning signs}\n- Nasal Endoscopy, Ear endoscopy,Laryngial Endoscopy - Microlaryngeal surgery \n\nMore info on our Patient Education section: https://drdeeptientdelhi.in/#patient-guidance",
+    "render_as": "buttons",
+    "options": [],
+    "show_back": true,
+    "show_home": true
+  },
+
+  "testimonials": {
+    "message": "Read what our patients say and explore Dr. Deepti's recognitions:\n\nhttps://drdeeptientdelhi.in/recognition",
+    "render_as": "buttons",
+    "options": [],
+    "show_back": true,
+    "show_home": true
+  }
+}

@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Dr. Deepti ENT Clinic — WhatsApp Chatbot on AWS Lambda
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 256
+    Runtime: python3.12
+    Environment:
+      Variables:
+        WHATSAPP_VERIFY_TOKEN: !Ref WhatsAppVerifyToken
+        WHATSAPP_ACCESS_TOKEN: !Ref WhatsAppAccessToken
+        WHATSAPP_PHONE_NUMBER_ID: !Ref WhatsAppPhoneNumberId
+        META_APP_SECRET: !Ref MetaAppSecret
+        STAFF_WHATSAPP_NUMBER: !Ref StaffWhatsAppNumber
+        DATABASE_URL: !Ref DatabaseUrl
+
+Parameters:
+  WhatsAppVerifyToken:
+    Type: String
+    NoEcho: true
+    Description: "The WHATSAPP_VERIFY_TOKEN from your .env file"
+  WhatsAppAccessToken:
+    Type: String
+    NoEcho: true
+    Description: "The WHATSAPP_ACCESS_TOKEN from your .env file"
+  WhatsAppPhoneNumberId:
+    Type: String
+    Description: "The WHATSAPP_PHONE_NUMBER_ID from your .env file"
+  MetaAppSecret:
+    Type: String
+    NoEcho: true
+    Description: "The META_APP_SECRET from your .env file"
+  StaffWhatsAppNumber:
+    Type: String
+    Description: "The staff WhatsApp number e.g. +918800295555"
+  DatabaseUrl:
+    Type: String
+    NoEcho: true
+    Description: "Full Neon Postgres pooler URL: postgresql+asyncpg://user:pass@ep-xxx-pooler.region.aws.neon.tech/dbname?ssl=require"
+
+Resources:
+  WhatsAppBotFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: whatsapp-bot
+      CodeUri: whatsapp-bot/
+      Handler: main.handler
+      Description: "Handles incoming WhatsApp webhooks for Dr. Deepti ENT Clinic"
+      Events:
+        WebhookPost:
+          Type: HttpApi
+          Properties:
+            Path: /whatsapp/webhook
+            Method: POST
+        WebhookGet:
+          Type: HttpApi
+          Properties:
+            Path: /whatsapp/webhook
+            Method: GET
+        PrivacyGet:
+          Type: HttpApi
+          Properties:
+            Path: /privacy
+            Method: GET
+
+Outputs:
+  WebhookUrl:
+    Description: "Paste this URL into the Meta Dashboard Callback URL field"
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/whatsapp/webhook"
