@@ -92,3 +92,30 @@ async def send_list(to: str, body: str, rows: list):
         }
     }
     return await _send_message(payload)
+
+async def send_template(to: str, template_name: str, language_code: str = "en_US", variables: list = None):
+    """
+    Send an approved WhatsApp template.
+    variables should be a list of strings corresponding to {{1}}, {{2}}, etc.
+    """
+    components = []
+    if variables:
+        parameters = [{"type": "text", "text": str(v)} for v in variables]
+        components.append({
+            "type": "body",
+            "parameters": parameters
+        })
+        
+    payload = {
+        "messaging_product": "whatsapp",
+        "to": to,
+        "type": "template",
+        "template": {
+            "name": template_name,
+            "language": {
+                "code": language_code
+            },
+            "components": components
+        }
+    }
+    return await _send_message(payload)
