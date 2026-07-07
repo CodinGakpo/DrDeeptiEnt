@@ -26,12 +26,9 @@ else:
     # Fallback to constructing one from the individual PG* variables.
     DATABASE_URL = f"postgresql+asyncpg://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{PGDATABASE}"
 
-# Ensure SSL is required for Neon
-if "neon.tech" in DATABASE_URL or "neon.tech" in PGHOST:
-    if "?" not in DATABASE_URL:
-        DATABASE_URL += "?ssl=require"
-    elif "ssl=" not in DATABASE_URL and "sslmode=" not in DATABASE_URL:
-        DATABASE_URL += "&ssl=require"
+# Strip any query parameters (like ?sslmode=require) as asyncpg does not support them
+if "?" in DATABASE_URL:
+    DATABASE_URL = DATABASE_URL.split("?")[0]
 
 # Lambda spins up many concurrent instances; keep the pool small to avoid
 # exhausting Neon's connection limit. pool_pre_ping drops stale connections
@@ -42,6 +39,7 @@ engine = create_async_engine(
     pool_size=2,
     max_overflow=3,
     pool_pre_ping=True,
+    connect_args={"ssl": "require"}
 )
 AsyncSessionLocal = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
