@@ -8,3 +8,4 @@ db.sqlite3
 notes.txt
 .aws-sam/
 samconfig.toml
+PROJECT_STORY.md

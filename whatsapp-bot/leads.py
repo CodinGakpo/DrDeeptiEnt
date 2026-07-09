@@ -26,15 +26,19 @@ async def notify_staff(lead: WhatsAppLead):
     if not STAFF_WHATSAPP_NUMBER:
         return
         
-    text = (
-        f"🚨 *New WhatsApp Lead*\n\n"
-        f"Name: {lead.patient_name}\n"
-        f"Age: {lead.age}\n"
-        f"Concern: {lead.concern}\n"
-        f"Location: {lead.location}\n"
-        f"Preferred Time: {lead.preferred_time}\n"
-        f"Phone: {lead.phone_number}"
-    )
-    
     staff_num = STAFF_WHATSAPP_NUMBER.replace("+", "").replace(" ", "").replace("-", "")
-    await whatsapp.send_text(staff_num, text)
+    
+    # Generate a short booking ID from the UUID (e.g. B-8F2A)
+    booking_id = f"B-{str(lead.id).split('-')[0][:4].upper()}"
+    
+    variables = [
+        booking_id,
+        lead.patient_name,
+        str(lead.age),
+        lead.concern or "General consultation",
+        lead.location,
+        lead.preferred_time,
+        lead.phone_number
+    ]
+    
+    await whatsapp.send_template(staff_num, "new_lead_alert", "en_US", variables)
