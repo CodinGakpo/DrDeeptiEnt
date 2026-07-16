@@ -10,19 +10,16 @@ with open(BASE_DIR / "nodes.json", "r", encoding="utf-8") as f:
 RESET_KEYWORDS = {"hi", "hello", "menu", "start", "restart"}
 
 def get_dynamic_options(node_id: str) -> list:
+    from datetime import datetime, timedelta
+    now = datetime.utcnow() + timedelta(hours=5, minutes=30)  # IST
+    candidate = now.date() + timedelta(days=1)
+    options = []
+    days_added = 0
+
     if node_id == "collect_date":
-        from datetime import datetime, timedelta, date
-        options = []
-        now = datetime.utcnow() + timedelta(hours=5, minutes=30)  # IST
-        # Block physical slots until August 2026
-        block_until = date(2026, 8, 1)
-        start = now.date() + timedelta(days=1)
-        if start < block_until:
-            start = block_until
-        days_added = 0
-        candidate = start
+        # Physical (CK Birla): Mon–Sat, skip Sunday
         while days_added < 3:
-            if candidate.weekday() != 6:  # Skip Sundays
+            if candidate.weekday() != 6:
                 day_str = candidate.strftime("%A, %d %b")
                 options.append({
                     "id": f"date_{days_added}",
@@ -33,6 +30,22 @@ def get_dynamic_options(node_id: str) -> list:
                 days_added += 1
             candidate += timedelta(days=1)
         return options
+
+    if node_id == "collect_online_date":
+        # Online: Mon–Fri only
+        while days_added < 3:
+            if candidate.weekday() < 5:
+                day_str = candidate.strftime("%A, %d %b")
+                options.append({
+                    "id": f"odate_{days_added}",
+                    "next": "collect_online_time",
+                    "label": day_str,
+                    "set_context": {"preferred_date": day_str}
+                })
+                days_added += 1
+            candidate += timedelta(days=1)
+        return options
+
     return []
 
 def get_node(node_id: str):

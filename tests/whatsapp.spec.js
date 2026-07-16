@@ -64,51 +64,107 @@ test.describe('WhatsApp bot — live Lambda', () => {
     expect(r.status()).toBe(403);
   });
 
-  test('Full booking flow — happy path', async ({ request }) => {
-    // Step 1: reset to root
+  test('Full booking flow — CK Birla happy path', async ({ request }) => {
+    // Reset to root
     let r = await send(request, textPayload('hi'));
     expect(r.status()).toBe(200);
 
-    // Step 2: select "Book appointment"
+    // Select "Book appointment"
     r = await send(request, listReplyPayload('book_appointment', 'Book appointment'));
     expect(r.status()).toBe(200);
 
-    // Step 3: select concern (Ear problem)
+    // Select concern
     r = await send(request, listReplyPayload('concern_ear', 'Ear problem'));
     expect(r.status()).toBe(200);
 
-    // Step 4: select location (CK Birla)
-    r = await send(request, listReplyPayload('loc_ckbirla', 'CK Birla Hospital'));
-    expect(r.status()).toBe(200);
-
-    // Step 5: enter patient name
+    // Enter patient name (now comes before clinic selection)
     r = await send(request, textPayload('Test Patient'));
     expect(r.status()).toBe(200);
 
-    // Step 6: enter age
+    // Enter age
     r = await send(request, textPayload('35'));
     expect(r.status()).toBe(200);
 
-    // Step 7: select first available date (date_0 — August onwards)
-    r = await send(request, listReplyPayload('date_0', 'Saturday, 02 Aug'));
+    // Select clinic (select_clinic node)
+    r = await send(request, listReplyPayload('loc_ckbirla', 'CK Birla Hospital (Punjabi Bagh)'));
     expect(r.status()).toBe(200);
 
-    // Step 8: select Morning slot
+    // Select first available date
+    r = await send(request, listReplyPayload('date_0', 'Thursday, 17 Jul'));
+    expect(r.status()).toBe(200);
+
+    // Select Morning slot
     r = await send(request, buttonReplyPayload('slot_morn', 'Morning'));
     expect(r.status()).toBe(200);
 
-    // Step 9: confirm booking
+    // Confirm booking
     r = await send(request, buttonReplyPayload('submit_lead', 'Confirm'));
     expect(r.status()).toBe(200);
   });
 
+  test('Full booking flow — Online consultation happy path', async ({ request }) => {
+    let r = await send(request, textPayload('hi'));
+    expect(r.status()).toBe(200);
+
+    r = await send(request, listReplyPayload('book_appointment', 'Book appointment'));
+    expect(r.status()).toBe(200);
+
+    r = await send(request, listReplyPayload('concern_voice', 'Voice / swallowing'));
+    expect(r.status()).toBe(200);
+
+    r = await send(request, textPayload('Online Patient'));
+    expect(r.status()).toBe(200);
+
+    r = await send(request, textPayload('28'));
+    expect(r.status()).toBe(200);
+
+    // Select online consultation
+    r = await send(request, listReplyPayload('loc_online', 'Online Consultation'));
+    expect(r.status()).toBe(200);
+
+    // Select first available weekday date
+    r = await send(request, listReplyPayload('odate_0', 'Thursday, 17 Jul'));
+    expect(r.status()).toBe(200);
+
+    // Select 7:00 PM slot
+    r = await send(request, listReplyPayload('ot_7pm', '7:00 PM'));
+    expect(r.status()).toBe(200);
+
+    // Confirm
+    r = await send(request, buttonReplyPayload('submit_lead', 'Confirm'));
+    expect(r.status()).toBe(200);
+  });
+
+  test('Adarsh unavailable — redirects to CK Birla', async ({ request }) => {
+    let r = await send(request, textPayload('hi'));
+    expect(r.status()).toBe(200);
+
+    r = await send(request, listReplyPayload('book_appointment', 'Book appointment'));
+    expect(r.status()).toBe(200);
+
+    r = await send(request, listReplyPayload('concern_nose', 'Nose problem'));
+    expect(r.status()).toBe(200);
+
+    r = await send(request, textPayload('Adarsh Patient'));
+    expect(r.status()).toBe(200);
+
+    r = await send(request, textPayload('45'));
+    expect(r.status()).toBe(200);
+
+    // Select Adarsh — should hit adarsh_unavailable node
+    r = await send(request, listReplyPayload('loc_adarsh', 'Adarsh ENT Clinic (Pitampura)'));
+    expect(r.status()).toBe(200);
+
+    // Redirect to CK Birla from unavailable screen
+    r = await send(request, buttonReplyPayload('adarsh_to_ckbirla', 'CK Birla Hospital'));
+    expect(r.status()).toBe(200);
+  });
+
   test('Invalid age input is rejected and re-prompts', async ({ request }) => {
-    // Reset session first
     await send(request, textPayload('hi'));
     await send(request, listReplyPayload('book_appointment', 'Book appointment'));
     await send(request, listReplyPayload('concern_nose', 'Nose problem'));
-    await send(request, listReplyPayload('loc_ckbirla', 'CK Birla Hospital'));
-    await send(request, textPayload('Jane Doe'));
+    await send(request, textPayload('Jane Doe')); // name comes before clinic now
 
     // Send invalid age
     const r = await send(request, textPayload('abc'));

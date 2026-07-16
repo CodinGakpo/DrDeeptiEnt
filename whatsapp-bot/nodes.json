@@ -16,25 +16,22 @@
     "message": "Sure — what would you like to consult Dr. Deepti for?",
     "render_as": "list",
     "options": [
-      { "id": "concern_nose", "next": "location", "label": "Nose problem", "set_context": { "concern": "Nose problem" } },
-      { "id": "concern_ear", "next": "location", "label": "Ear problem", "set_context": { "concern": "Ear problem" } },
-      { "id": "concern_vertigo", "next": "location", "label": "Vertigo / Chakkar", "set_context": { "concern": "Vertigo" } },
-      { "id": "concern_mouth", "next": "location", "label": "Mouth / throat / neck", "set_context": { "concern": "Mouth/throat/neck" } },
-      { "id": "concern_voice", "next": "location", "label": "Voice / swallowing", "set_context": { "concern": "Voice/swallowing" } },
-      { "id": "concern_endoscopy", "next": "location", "label": "Endoscopy", "set_context": { "concern": "Endoscopy" } },
-      { "id": "concern_headneck", "next": "location", "label": "Head & neck cancer screening", "set_context": { "concern": "Head & neck cancer screening" } }
+      { "id": "concern_nose",     "next": "collect_name", "label": "Nose problem",               "set_context": { "concern": "Nose problem" } },
+      { "id": "concern_ear",      "next": "collect_name", "label": "Ear problem",                "set_context": { "concern": "Ear problem" } },
+      { "id": "concern_vertigo",  "next": "collect_name", "label": "Vertigo / Chakkar",          "set_context": { "concern": "Vertigo" } },
+      { "id": "concern_mouth",    "next": "collect_name", "label": "Mouth / throat / neck",      "set_context": { "concern": "Mouth/throat/neck" } },
+      { "id": "concern_voice",    "next": "collect_name", "label": "Voice / swallowing",         "set_context": { "concern": "Voice/swallowing" } },
+      { "id": "concern_endoscopy","next": "collect_name", "label": "Endoscopy",                  "set_context": { "concern": "Endoscopy" } },
+      { "id": "concern_headneck", "next": "collect_name", "label": "Head & neck cancer screening","set_context": { "concern": "Head & neck cancer screening" } }
     ],
     "show_back": true,
     "show_home": true
   },
 
   "location": {
-    "message": "Dr. Deepti Sinha (Lead ENT) is available for Consultation and Endoscopy appointments at:\n\n1. CK Birla Hospital\n   Road No. 41, Punjabi Bagh, Delhi 110027\n   Monday to Saturday\n\n2. Adarsh ENT Clinic\n   C-2, West Enclave, Pitampura\n   Monday to Friday\n\nSelect a location to continue.",
-    "render_as": "list",
-    "options": [
-      { "id": "loc_ckbirla", "next": "collect_name", "label": "CK Birla Hospital", "set_context": { "location": "CK Birla Hospital, Road No. 41, Punjabi Bagh, Delhi 110027" } },
-      { "id": "loc_adarsh", "next": "collect_name", "label": "Adarsh ENT Clinic", "set_context": { "location": "Adarsh ENT Clinic, C-2 West Enclave, Pitampura" } }
-    ],
+    "message": "Dr. Deepti Sinha (Lead ENT) is available at:\n\n1. CK Birla Hospital\n   Road No. 41, Punjabi Bagh, Delhi 110027\n   Monday to Saturday\n\n2. Adarsh ENT Clinic\n   C-2, West Enclave, Pitampura\n   Monday to Friday (accepting from August 2026)\n\nTo book an appointment, use 'Book appointment' from the main menu.",
+    "render_as": "buttons",
+    "options": [],
     "show_back": true,
     "show_home": true
   },
@@ -57,14 +54,45 @@
     "type": "text_input",
     "validation": "integer_range:0-99",
     "on_invalid": "Please enter age as a number (0-99).",
-    "next": "collect_date",
+    "next": "select_clinic",
     "context_key": "age",
     "show_back": true,
     "show_home": true
   },
 
+  "select_clinic": {
+    "message": "Where would you like to be seen?",
+    "render_as": "list",
+    "options": [
+      { "id": "loc_ckbirla", "next": "collect_date",        "label": "CK Birla Hospital (Punjabi Bagh)", "set_context": { "location": "CK Birla Hospital, Road No. 41, Punjabi Bagh, Delhi 110027" } },
+      { "id": "loc_adarsh",  "next": "adarsh_unavailable",  "label": "Adarsh ENT Clinic (Pitampura)",   "set_context": { "location": "Adarsh ENT Clinic, C-2 West Enclave, Pitampura" } },
+      { "id": "loc_online",  "next": "collect_online_date", "label": "Online Consultation",              "set_context": { "location": "Online Consultation" } }
+    ],
+    "show_back": true,
+    "show_home": true
+  },
+
+  "adarsh_unavailable": {
+    "message": "Adarsh ENT Clinic is currently not accepting new appointments until August 2026.\n\nYou can book at CK Birla Hospital or choose an online consultation instead.",
+    "render_as": "buttons",
+    "options": [
+      { "id": "adarsh_to_ckbirla", "next": "collect_date",        "label": "CK Birla Hospital",    "set_context": { "location": "CK Birla Hospital, Road No. 41, Punjabi Bagh, Delhi 110027" } },
+      { "id": "adarsh_to_online",  "next": "collect_online_date", "label": "Online Consultation",  "set_context": { "location": "Online Consultation" } }
+    ],
+    "show_back": true,
+    "show_home": false
+  },
+
   "collect_date": {
-    "message": "July physical appointments are currently full.\n\nOnline consultation is available on request — let us know after booking.\n\nPhysical appointments are open from August. Select a preferred date:",
+    "message": "Select a preferred date for your visit at CK Birla Hospital:",
+    "render_as": "list",
+    "type": "options",
+    "show_back": true,
+    "show_home": true
+  },
+
+  "collect_online_date": {
+    "message": "Online consultations are available Monday to Friday.\n\nSelect a preferred date:",
     "render_as": "list",
     "type": "options",
     "show_back": true,
@@ -75,8 +103,20 @@
     "message": "Which time of day works for you?",
     "render_as": "buttons",
     "options": [
-      { "id": "slot_morn", "next": "confirm", "label": "Morning", "set_context": { "preferred_slot": "Morning" } },
+      { "id": "slot_morn", "next": "confirm", "label": "Morning",   "set_context": { "preferred_slot": "Morning" } },
       { "id": "slot_aft",  "next": "confirm", "label": "Afternoon", "set_context": { "preferred_slot": "Afternoon" } }
+    ],
+    "show_back": true,
+    "show_home": false
+  },
+
+  "collect_online_time": {
+    "message": "Select a time slot for your online consultation:",
+    "render_as": "list",
+    "options": [
+      { "id": "ot_7pm",   "next": "confirm", "label": "7:00 PM", "set_context": { "preferred_slot": "7:00 PM" } },
+      { "id": "ot_715pm", "next": "confirm", "label": "7:15 PM", "set_context": { "preferred_slot": "7:15 PM" } },
+      { "id": "ot_730pm", "next": "confirm", "label": "7:30 PM", "set_context": { "preferred_slot": "7:30 PM" } }
     ],
     "show_back": true,
     "show_home": false
@@ -86,8 +126,8 @@
     "message": "Please confirm these details:\n\nName: {name}\nAge: {age}\nReason: {concern|General consultation}\nLocation: {location}\nPreferred time: {preferred_date} {preferred_slot}\n\nIs this correct?",
     "render_as": "buttons",
     "options": [
-      { "id": "submit_lead", "label": "Confirm" },
-      { "id": "collect_name", "label": "Start over" }
+      { "id": "submit_lead",   "label": "Confirm" },
+      { "id": "collect_name",  "label": "Start over" }
     ],
     "show_back": false,
     "show_home": true
