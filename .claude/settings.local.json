@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd D:\\\\Desktop\\\\Project\\\\clinic; $env:AWS_ACCESS_KEY_ID = \\(Get-Content whatsapp-bot\\\\.env | Select-String \"^AWS_ACCESS_KEY=\"\\).ToString\\(\\).Split\\(\"=\",2\\)[1].Trim\\(\\); $env:AWS_SECRET_ACCESS_KEY = \\(Get-Content whatsapp-bot\\\\.env | Select-String \"^AWS_SECRET_KEY=\"\\).ToString\\(\\).Split\\(\"=\",2\\)[1].Trim\\(\\); $env:AWS_DEFAULT_REGION = \"ap-south-1\"; .\\\\build.ps1)"
+    ]
+  }
+}

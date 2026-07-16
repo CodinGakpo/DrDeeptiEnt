@@ -22,7 +22,7 @@
       { "id": "concern_mouth",    "next": "collect_name", "label": "Mouth / throat / neck",      "set_context": { "concern": "Mouth/throat/neck" } },
       { "id": "concern_voice",    "next": "collect_name", "label": "Voice / swallowing",         "set_context": { "concern": "Voice/swallowing" } },
       { "id": "concern_endoscopy","next": "collect_name", "label": "Endoscopy",                  "set_context": { "concern": "Endoscopy" } },
-      { "id": "concern_headneck", "next": "collect_name", "label": "Head & neck cancer screening","set_context": { "concern": "Head & neck cancer screening" } }
+      { "id": "concern_headneck", "next": "collect_name", "label": "Head & neck screening",      "set_context": { "concern": "Head & neck cancer screening" } }
     ],
     "show_back": true,
     "show_home": true
@@ -64,8 +64,8 @@
     "message": "Where would you like to be seen?",
     "render_as": "list",
     "options": [
-      { "id": "loc_ckbirla", "next": "collect_date",        "label": "CK Birla Hospital (Punjabi Bagh)", "set_context": { "location": "CK Birla Hospital, Road No. 41, Punjabi Bagh, Delhi 110027" } },
-      { "id": "loc_adarsh",  "next": "adarsh_unavailable",  "label": "Adarsh ENT Clinic (Pitampura)",   "set_context": { "location": "Adarsh ENT Clinic, C-2 West Enclave, Pitampura" } },
+      { "id": "loc_ckbirla", "next": "collect_date",        "label": "CK Birla Hospital",  "set_context": { "location": "CK Birla Hospital, Road No. 41, Punjabi Bagh, Delhi 110027" } },
+      { "id": "loc_adarsh",  "next": "adarsh_unavailable",  "label": "Adarsh ENT Clinic",  "set_context": { "location": "Adarsh ENT Clinic, C-2 West Enclave, Pitampura" } },
       { "id": "loc_online",  "next": "collect_online_date", "label": "Online Consultation",              "set_context": { "location": "Online Consultation" } }
     ],
     "show_back": true,
