@@ -29,11 +29,11 @@
   },
 
   "location": {
-    "message": "Dr. Deepti currently sees patients at:\n\n1. CK Birla Hospital, Punjabi Bagh, Delhi — Mon to Fri\n2. Adarsh ENT Clinic, C-2 West Enclave, Pitampura — Tue to Fri\n\nTap a location to continue.",
+    "message": "Dr. Deepti Sinha (Lead ENT) is available for Consultation and Endoscopy appointments at:\n\n1. CK Birla Hospital\n   Road No. 41, Punjabi Bagh, Delhi 110027\n   Monday to Saturday\n\n2. Adarsh ENT Clinic\n   C-2, West Enclave, Pitampura\n   Monday to Friday\n\nSelect a location to continue.",
     "render_as": "list",
     "options": [
-      { "id": "loc_ckbirla", "next": "collect_name", "label": "CK Birla Hospital", "set_context": { "location": "CK Birla Hospital, Punjabi Bagh, New Delhi" } },
-      { "id": "loc_adarsh", "next": "collect_name", "label": "Adarsh ENT Clinic", "set_context": { "location": "Adarsh ENT Clinic, Pitampura" } }
+      { "id": "loc_ckbirla", "next": "collect_name", "label": "CK Birla Hospital", "set_context": { "location": "CK Birla Hospital, Road No. 41, Punjabi Bagh, Delhi 110027" } },
+      { "id": "loc_adarsh", "next": "collect_name", "label": "Adarsh ENT Clinic", "set_context": { "location": "Adarsh ENT Clinic, C-2 West Enclave, Pitampura" } }
     ],
     "show_back": true,
     "show_home": true
@@ -57,22 +57,33 @@
     "type": "text_input",
     "validation": "integer_range:0-99",
     "on_invalid": "Please enter age as a number (0-99).",
-    "next": "collect_time",
+    "next": "collect_date",
     "context_key": "age",
     "show_back": true,
     "show_home": true
   },
 
-  "collect_time": {
-    "message": "When would you like to visit?",
+  "collect_date": {
+    "message": "July physical appointments are currently full.\n\nOnline consultation is available on request — let us know after booking.\n\nPhysical appointments are open from August. Select a preferred date:",
     "render_as": "list",
     "type": "options",
     "show_back": true,
     "show_home": true
   },
 
+  "collect_time_slot": {
+    "message": "Which time of day works for you?",
+    "render_as": "buttons",
+    "options": [
+      { "id": "slot_morn", "next": "confirm", "label": "Morning", "set_context": { "preferred_slot": "Morning" } },
+      { "id": "slot_aft",  "next": "confirm", "label": "Afternoon", "set_context": { "preferred_slot": "Afternoon" } }
+    ],
+    "show_back": true,
+    "show_home": false
+  },
+
   "confirm": {
-    "message": "Please confirm these details:\n\nName: {name}\nAge: {age}\nReason: {concern|General consultation}\nLocation: {location}\nPreferred time: {preferred_time}\n\nIs this correct?",
+    "message": "Please confirm these details:\n\nName: {name}\nAge: {age}\nReason: {concern|General consultation}\nLocation: {location}\nPreferred time: {preferred_date} {preferred_slot}\n\nIs this correct?",
     "render_as": "buttons",
     "options": [
       { "id": "submit_lead", "label": "Confirm" },

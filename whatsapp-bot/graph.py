@@ -10,31 +10,28 @@ with open(BASE_DIR / "nodes.json", "r", encoding="utf-8") as f:
 RESET_KEYWORDS = {"hi", "hello", "menu", "start", "restart"}
 
 def get_dynamic_options(node_id: str) -> list:
-    if node_id == "collect_time":
-        from datetime import datetime, timedelta
+    if node_id == "collect_date":
+        from datetime import datetime, timedelta, date
         options = []
-        now = datetime.utcnow() + timedelta(hours=5, minutes=30) # IST
+        now = datetime.utcnow() + timedelta(hours=5, minutes=30)  # IST
+        # Block physical slots until August 2026
+        block_until = date(2026, 8, 1)
+        start = now.date() + timedelta(days=1)
+        if start < block_until:
+            start = block_until
         days_added = 0
-        i = 1
+        candidate = start
         while days_added < 3:
-            dt = now + timedelta(days=i)
-            i += 1
-            if dt.weekday() == 6: # Skip Sundays
-                continue
-            day_str = dt.strftime("%A, %d %b")
-            options.append({
-                "id": f"time_{days_added}_morn",
-                "next": "confirm",
-                "label": f"{day_str} Morning",
-                "set_context": {"preferred_time": f"{day_str} Morning"}
-            })
-            options.append({
-                "id": f"time_{days_added}_aft",
-                "next": "confirm",
-                "label": f"{day_str} Afternoon",
-                "set_context": {"preferred_time": f"{day_str} Afternoon"}
-            })
-            days_added += 1
+            if candidate.weekday() != 6:  # Skip Sundays
+                day_str = candidate.strftime("%A, %d %b")
+                options.append({
+                    "id": f"date_{days_added}",
+                    "next": "collect_time_slot",
+                    "label": day_str,
+                    "set_context": {"preferred_date": day_str}
+                })
+                days_added += 1
+            candidate += timedelta(days=1)
         return options
     return []
 
