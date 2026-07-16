@@ -12,7 +12,7 @@ export default function App() {
   const whatsappMessage = encodeURIComponent(
     "Hi, I would like to enquire about an appointment",
   );
-  const whatsappLink = `https://wa.me/919818630069?text=${whatsappMessage}`;
+  const whatsappLink = `https://wa.me/918796808081?text=${whatsappMessage}`;
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[var(--color-bg)] text-[var(--color-ink)]">
