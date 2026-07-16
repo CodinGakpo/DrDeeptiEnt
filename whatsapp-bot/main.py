@@ -84,6 +84,7 @@ def validate_input(value: str, rule: str) -> bool:
 async def handle_webhook(request: Request, db: AsyncSession = Depends(get_db)):
     await verify_signature(request)
     body = await request.json()
+    print(f"WEBHOOK PAYLOAD: {body}")
     
     try:
         entry = body["entry"][0]

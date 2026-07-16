@@ -41,4 +41,4 @@ async def notify_staff(lead: WhatsAppLead):
         lead.phone_number
     ]
     
-    await whatsapp.send_template(staff_num, "new_lead_alert", "en_US", variables)
+    await whatsapp.send_template(staff_num, "new_lead_alert", "en", variables)

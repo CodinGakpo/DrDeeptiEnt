@@ -9,7 +9,7 @@ export function buildClinicSchema() {
     keywords: "drdeeptient, drdeeptientdelhi, delhidrdeeptient, Dr Deepti Sinha ENT Delhi, ENT specialist Delhi",
     url: SITE_URL,
     image: `${SITE_URL}/profilePicture.png`,
-    telephone: "+91-9818630069",
+    telephone: "+91-8796808081",
     email: "drdeeptientclinic@gmail.com",
     address: {
       "@type": "PostalAddress",
