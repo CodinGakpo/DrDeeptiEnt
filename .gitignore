@@ -9,3 +9,6 @@ notes.txt
 .aws-sam/
 samconfig.toml
 PROJECT_STORY.md
+node_modules/
+test-results/
+playwright-report/

@@ -14,7 +14,7 @@ async def save_lead(db: AsyncSession, session_obj: ConversationSession) -> Whats
         age=int(ctx.get("age", 0)),
         concern=ctx.get("concern", "General consultation"),
         location=ctx.get("location", "Unknown Location"),
-        preferred_time=ctx.get("preferred_time", "Unknown Time")
+        preferred_time=f"{ctx.get('preferred_date', '')} {ctx.get('preferred_slot', '')}".strip() or "Unknown Time"
     )
     
     db.add(lead)
